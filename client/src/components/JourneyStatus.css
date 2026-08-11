@@ -1,0 +1,555 @@
+/* =========================================================
+   DISHA JOURNEY STATUS
+   ========================================================= */
+
+.journey-status {
+  --journey-bg: #fffaf4;
+  --journey-text: #3a2927;
+  --journey-muted: #806e68;
+
+  --journey-terracotta: #b86650;
+  --journey-terracotta-dark: #934937;
+  --journey-terracotta-soft: #ead0c4;
+
+  --journey-border: rgba(58, 41, 39, 0.11);
+
+  --journey-safe: #47745b;
+  --journey-safe-soft: #dce9df;
+
+  --journey-warning: #a66a35;
+  --journey-warning-soft: #f0dfc9;
+
+  --journey-danger: #d62828;
+
+  width: 100%;
+
+  padding: 16px;
+
+  background: var(--journey-bg);
+
+  color: var(--journey-text);
+
+  border: 1px solid var(--journey-border);
+
+  border-radius: 18px;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.journey-status-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.journey-status-indicator {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 9px;
+
+  min-width: 0;
+}
+
+.journey-status-pulse {
+  width: 9px;
+  height: 9px;
+
+  flex-shrink: 0;
+
+  margin-top: 3px;
+
+  border-radius: 50%;
+
+  background: var(--journey-safe);
+
+  box-shadow:
+    0 0 0 4px var(--journey-safe-soft);
+
+  animation: journeyPulse 2s infinite;
+}
+
+.journey-status-pulse.checkin {
+  background: var(--journey-warning);
+
+  box-shadow:
+    0 0 0 4px var(--journey-warning-soft);
+
+  animation: checkinPulse 1.4s infinite;
+}
+
+.journey-status-pulse.completed {
+  background: var(--journey-safe);
+
+  animation: none;
+}
+
+.journey-status-pulse.paused {
+  background: var(--journey-muted);
+
+  box-shadow: none;
+
+  animation: none;
+}
+
+@keyframes journeyPulse {
+  0% {
+    box-shadow:
+      0 0 0 3px rgba(71, 116, 91, 0.18);
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 7px rgba(71, 116, 91, 0);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 3px rgba(71, 116, 91, 0.18);
+  }
+}
+
+@keyframes checkinPulse {
+  0% {
+    box-shadow:
+      0 0 0 3px rgba(166, 106, 53, 0.2);
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 8px rgba(166, 106, 53, 0);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 3px rgba(166, 106, 53, 0.2);
+  }
+}
+
+
+/* =========================================================
+   STATUS TEXT
+   ========================================================= */
+
+.journey-status-label {
+  display: block;
+
+  font-size: 12px;
+  font-weight: 850;
+
+  line-height: 1.2;
+}
+
+.journey-status-indicator p {
+  margin: 4px 0 0;
+
+  color: var(--journey-muted);
+
+  font-size: 8px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   MINI SAFETY SCORE
+   ========================================================= */
+
+.journey-mini-score {
+  min-width: 47px;
+
+  text-align: right;
+}
+
+.journey-mini-score span {
+  display: block;
+
+  color: var(--journey-muted);
+
+  font-size: 5px;
+  font-weight: 900;
+
+  letter-spacing: 0.8px;
+}
+
+.journey-mini-score strong {
+  display: block;
+
+  margin-top: 2px;
+
+  color: var(--journey-safe);
+
+  font-size: 18px;
+  font-weight: 900;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   DESTINATION
+   ========================================================= */
+
+.journey-destination {
+  margin-top: 15px;
+
+  padding: 11px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  background: var(--journey-terracotta-soft);
+
+  border-radius: 11px;
+}
+
+.journey-destination-icon {
+  width: 27px;
+  height: 27px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--journey-terracotta);
+
+  color: white;
+
+  font-size: 7px;
+}
+
+.journey-destination div:last-child {
+  min-width: 0;
+}
+
+.journey-destination span {
+  display: block;
+
+  color: var(--journey-terracotta-dark);
+
+  font-size: 5px;
+  font-weight: 900;
+
+  letter-spacing: 0.8px;
+}
+
+.journey-destination strong {
+  display: block;
+
+  margin-top: 3px;
+
+  overflow: hidden;
+
+  color: var(--journey-text);
+
+  font-size: 10px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   JOURNEY STATS
+   ========================================================= */
+
+.journey-stats {
+  margin-top: 14px;
+
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+
+  align-items: center;
+}
+
+.journey-stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  min-width: 0;
+}
+
+.journey-stat-icon {
+  width: 22px;
+  height: 22px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: rgba(128, 110, 104, 0.08);
+
+  color: var(--journey-terracotta-dark);
+
+  font-size: 10px;
+}
+
+.journey-stat div {
+  min-width: 0;
+}
+
+.journey-stat small {
+  display: block;
+
+  color: var(--journey-muted);
+
+  font-size: 6px;
+}
+
+.journey-stat strong {
+  display: block;
+
+  margin-top: 2px;
+
+  color: var(--journey-text);
+
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.journey-stat-divider {
+  width: 1px;
+  height: 24px;
+
+  background: var(--journey-border);
+}
+
+
+/* =========================================================
+   MONITORING MESSAGE
+   ========================================================= */
+
+.journey-monitoring-message {
+  margin-top: 14px;
+
+  padding: 9px 10px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  background: rgba(71, 116, 91, 0.07);
+
+  border: 1px solid rgba(71, 116, 91, 0.1);
+
+  border-radius: 10px;
+}
+
+.monitoring-icon {
+  width: 21px;
+  height: 21px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: var(--journey-safe-soft);
+
+  color: var(--journey-safe);
+
+  font-size: 9px;
+}
+
+.journey-monitoring-message p {
+  margin: 0;
+
+  color: var(--journey-muted);
+
+  font-size: 8px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   CHECK-IN STATE
+   ========================================================= */
+
+.journey-checkin-button {
+  width: 100%;
+
+  height: 43px;
+
+  margin-top: 14px;
+
+  padding: 0 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 0;
+
+  border-radius: 11px;
+
+  background: var(--journey-warning);
+
+  color: white;
+
+  font-size: 10px;
+  font-weight: 850;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 14px rgba(166, 106, 53, 0.18);
+
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
+}
+
+.journey-checkin-button:hover {
+  filter: brightness(0.96);
+}
+
+.journey-checkin-button:active {
+  transform: scale(0.98);
+}
+
+.journey-checkin-button span:last-child {
+  width: 23px;
+  height: 23px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   COMPLETED
+   ========================================================= */
+
+.journey-completed-message {
+  margin-top: 14px;
+
+  padding: 10px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  border-radius: 10px;
+
+  background: var(--journey-safe-soft);
+
+  color: var(--journey-safe);
+}
+
+.journey-completed-message > span {
+  width: 21px;
+  height: 21px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--journey-safe);
+
+  color: white;
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.journey-completed-message p {
+  margin: 0;
+
+  font-size: 8px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+[data-theme="dark"] .journey-status {
+  --journey-bg: #211b1d;
+  --journey-text: #f4e9df;
+  --journey-muted: #b8a69e;
+
+  --journey-terracotta: #c8755d;
+  --journey-terracotta-dark: #a65440;
+  --journey-terracotta-soft: #382522;
+
+  --journey-border: rgba(244, 233, 223, 0.1);
+
+  --journey-safe: #72a47f;
+  --journey-safe-soft: #233229;
+
+  --journey-warning: #d29359;
+  --journey-warning-soft: #3b2c20;
+}
+
+[data-theme="dark"] .journey-monitoring-message {
+  background: rgba(114, 164, 127, 0.07);
+
+  border-color: rgba(114, 164, 127, 0.12);
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .journey-status {
+    padding: 13px;
+  }
+
+  .journey-stat {
+    gap: 4px;
+  }
+
+  .journey-stat-icon {
+    display: none;
+  }
+
+  .journey-stat strong {
+    font-size: 7px;
+  }
+}

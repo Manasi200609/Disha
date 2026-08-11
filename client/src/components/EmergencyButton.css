@@ -1,0 +1,215 @@
+/* =========================================================
+   DISHA — EMERGENCY BUTTON
+   Strong, unmistakable emergency state.
+   ========================================================= */
+
+.emergency-button {
+  --emergency-red: #c62828;
+  --emergency-red-dark: #a51f1f;
+  --emergency-red-light: #f3d4d1;
+
+  min-height: 48px;
+
+  padding: 7px 13px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  border: 0;
+  border-radius: 13px;
+
+  background: var(--emergency-red);
+
+  color: #ffffff;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 18px rgba(198, 40, 40, 0.22);
+
+  transition:
+    transform 0.15s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   HOVER / ACTIVE
+   ========================================================= */
+
+.emergency-button:hover {
+  background: var(--emergency-red-dark);
+
+  box-shadow:
+    0 8px 21px rgba(198, 40, 40, 0.28);
+}
+
+.emergency-button:active {
+  transform: scale(0.96);
+
+  box-shadow:
+    0 3px 10px rgba(198, 40, 40, 0.18);
+}
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.emergency-button-icon {
+  width: 28px;
+  height: 28px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 950;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+.emergency-button-content {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 2px;
+}
+
+.emergency-button-content strong {
+  font-size: 9px;
+  font-weight: 900;
+
+  line-height: 1;
+}
+
+.emergency-button-content small {
+  font-size: 6px;
+  font-weight: 600;
+
+  opacity: 0.8;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   DISABLED
+   ========================================================= */
+
+.emergency-button.disabled,
+.emergency-button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+}
+
+.emergency-button.disabled:hover,
+.emergency-button:disabled:hover {
+  background: var(--emergency-red);
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   ICON-ONLY VERSION
+   ========================================================= */
+
+.emergency-button:not(:has(.emergency-button-content)) {
+  width: 52px;
+  height: 52px;
+
+  padding: 0;
+
+  border-radius: 50%;
+}
+
+.emergency-button:not(:has(.emergency-button-content))
+  .emergency-button-icon {
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  font-size: 17px;
+}
+
+
+/* =========================================================
+   DARK MODE
+   Emergency red intentionally stays saturated.
+   ========================================================= */
+
+[data-theme="dark"] .emergency-button {
+  --emergency-red: #df3b38;
+  --emergency-red-dark: #c82e2b;
+  --emergency-red-light: #422524;
+
+  box-shadow:
+    0 6px 20px rgba(223, 59, 56, 0.25);
+}
+
+[data-theme="dark"] .emergency-button:hover {
+  box-shadow:
+    0 8px 23px rgba(223, 59, 56, 0.32);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .emergency-button {
+    min-height: 46px;
+
+    padding: 6px 11px;
+
+    gap: 8px;
+  }
+
+  .emergency-button-icon {
+    width: 26px;
+    height: 26px;
+
+    font-size: 13px;
+  }
+
+  .emergency-button-content strong {
+    font-size: 8px;
+  }
+
+  .emergency-button-content small {
+    font-size: 5px;
+  }
+}

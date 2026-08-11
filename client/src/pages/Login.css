@@ -1,0 +1,560 @@
+/* =========================================================
+   DISHA — LOGIN PAGE
+   ========================================================= */
+
+.login-page {
+  --login-bg: #f8f1e8;
+  --login-surface: #fffaf4;
+
+  --login-text: #382724;
+  --login-muted: #806e68;
+
+  --login-terracotta: #b86650;
+  --login-terracotta-dark: #934937;
+  --login-terracotta-soft: #ead0c4;
+
+  --login-border: rgba(56, 39, 36, 0.11);
+
+  min-height: 100dvh;
+  width: 100%;
+
+  overflow-x: hidden;
+
+  background: var(--login-bg);
+  color: var(--login-text);
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.login-content {
+  width: 100%;
+  max-width: 430px;
+
+  min-height: calc(100dvh - 64px);
+
+  margin: 0 auto;
+
+  padding: 22px 20px 25px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.login-back-button {
+  width: fit-content;
+
+  padding: 4px 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--login-muted);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.login-back-button span {
+  font-size: 13px;
+
+  transition:
+    transform 0.15s ease;
+}
+
+.login-back-button:hover span {
+  transform: translateX(-3px);
+}
+
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.login-intro {
+  margin-top: 25px;
+}
+
+.login-eyebrow {
+  display: inline-block;
+
+  color: var(--login-terracotta);
+
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: 1.2px;
+}
+
+.login-intro h1 {
+  margin: 9px 0 11px;
+
+  font-size: clamp(31px, 9vw, 41px);
+  font-weight: 900;
+
+  letter-spacing: -1.5px;
+
+  line-height: 1;
+}
+
+.login-intro h1 em {
+  color: var(--login-terracotta);
+
+  font-style: normal;
+}
+
+.login-intro p {
+  max-width: 315px;
+
+  margin: 0;
+
+  color: var(--login-muted);
+
+  font-size: 9px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.login-form {
+  margin-top: 24px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+
+/* =========================================================
+   FIELD
+   ========================================================= */
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.login-field label {
+  color: var(--login-text);
+
+  font-size: 7px;
+  font-weight: 850;
+
+  letter-spacing: 0.15px;
+}
+
+.login-field input {
+  width: 100%;
+  height: 45px;
+
+  padding: 0 12px;
+
+  border: 1px solid var(--login-border);
+  border-radius: 11px;
+
+  outline: none;
+
+  background: var(--login-surface);
+
+  color: var(--login-text);
+
+  font-family: inherit;
+
+  font-size: 9px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-field input::placeholder {
+  color: #a69791;
+}
+
+.login-field input:focus {
+  border-color: rgba(184, 102, 80, 0.6);
+
+  box-shadow:
+    0 0 0 3px rgba(184, 102, 80, 0.09);
+}
+
+
+/* =========================================================
+   PASSWORD
+   ========================================================= */
+
+.login-password-wrapper {
+  position: relative;
+}
+
+.login-password-wrapper input {
+  padding-right: 42px;
+}
+
+.login-password-toggle {
+  position: absolute;
+
+  right: 8px;
+  top: 50%;
+
+  width: 29px;
+  height: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateY(-50%);
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: var(--login-muted);
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.login-password-toggle:hover {
+  background: rgba(184, 102, 80, 0.07);
+
+  color: var(--login-terracotta);
+}
+
+
+/* =========================================================
+   FORGOT PASSWORD
+   ========================================================= */
+
+.login-forgot {
+  align-self: flex-end;
+
+  margin-top: -4px;
+
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--login-terracotta-dark);
+
+  font-size: 7px;
+  font-weight: 750;
+
+  cursor: pointer;
+}
+
+.login-forgot:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   SUBMIT
+   ========================================================= */
+
+.login-submit {
+  width: 100%;
+  height: 49px;
+
+  margin-top: 2px;
+
+  padding: 0 12px 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 0;
+  border-radius: 12px;
+
+  background: var(--login-terracotta);
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 9px;
+  font-weight: 850;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 18px rgba(184, 102, 80, 0.19);
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-submit:hover {
+  background: var(--login-terracotta-dark);
+
+  box-shadow:
+    0 9px 21px rgba(184, 102, 80, 0.23);
+}
+
+.login-submit:active {
+  transform: scale(0.985);
+}
+
+.login-submit-arrow {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.16);
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.login-divider {
+  margin: 18px 0 13px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+.login-divider span {
+  height: 1px;
+
+  flex: 1;
+
+  background: var(--login-border);
+}
+
+.login-divider small {
+  color: var(--login-muted);
+
+  font-size: 6px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   GUEST
+   ========================================================= */
+
+.login-guest {
+  width: 100%;
+  height: 42px;
+
+  border: 1px solid var(--login-border);
+  border-radius: 11px;
+
+  background: transparent;
+
+  color: var(--login-text);
+
+  font-family: inherit;
+
+  font-size: 8px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.login-guest:hover {
+  background: rgba(184, 102, 80, 0.05);
+
+  border-color: rgba(184, 102, 80, 0.22);
+}
+
+
+/* =========================================================
+   SWITCH LOGIN / SIGNUP
+   ========================================================= */
+
+.login-switch {
+  margin-top: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  color: var(--login-muted);
+
+  font-size: 7px;
+}
+
+.login-switch button {
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--login-terracotta-dark);
+
+  font-family: inherit;
+
+  font-size: 7px;
+  font-weight: 850;
+
+  cursor: pointer;
+}
+
+.login-switch button:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   PRIVACY
+   ========================================================= */
+
+.login-privacy {
+  max-width: 290px;
+
+  margin: 17px auto 0;
+
+  color: var(--login-muted);
+
+  font-size: 6px;
+
+  line-height: 1.45;
+
+  text-align: center;
+
+  opacity: 0.85;
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+[data-theme="dark"] .login-page {
+  --login-bg: #171315;
+  --login-surface: #211b1d;
+
+  --login-text: #f4e9df;
+  --login-muted: #b8a69e;
+
+  --login-terracotta: #c8755d;
+  --login-terracotta-dark: #a65440;
+  --login-terracotta-soft: #382522;
+
+  --login-border: rgba(244, 233, 223, 0.1);
+}
+
+[data-theme="dark"] .login-field input {
+  color-scheme: dark;
+}
+
+[data-theme="dark"] .login-field input::placeholder {
+  color: #776b67;
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .login-content {
+    padding:
+      18px
+      16px
+      20px;
+  }
+
+  .login-intro {
+    margin-top: 20px;
+  }
+
+  .login-intro h1 {
+    font-size: 29px;
+  }
+
+  .login-form {
+    margin-top: 20px;
+
+    gap: 11px;
+  }
+
+  .login-field input {
+    height: 43px;
+  }
+}
+
+
+/* =========================================================
+   TALL SCREENS
+   ========================================================= */
+
+@media (min-height: 760px) and (max-width: 600px) {
+  .login-content {
+    padding-top: 27px;
+  }
+
+  .login-intro {
+    margin-top: 30px;
+  }
+
+  .login-form {
+    margin-top: 28px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .login-page *,
+  .login-page *::before,
+  .login-page *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

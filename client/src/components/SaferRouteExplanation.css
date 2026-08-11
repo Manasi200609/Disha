@@ -1,0 +1,84 @@
+.safer-explanation {
+  margin-top: 14px;
+  padding: 17px;
+  background: #f8f3ee;
+  border: 1px solid #eadfd6;
+  border-radius: 17px;
+}
+
+.safer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.safer-eyebrow {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #a85d47;
+}
+
+.safer-header h3 {
+  margin: 5px 0 0;
+  font-size: 18px;
+}
+
+.safety-score {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.safety-score strong {
+  font-size: 24px;
+}
+
+.safety-score span {
+  color: #777;
+  font-size: 12px;
+}
+
+.safer-summary {
+  margin: 10px 0 15px;
+  color: #555;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.safety-factors {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.safety-factor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.factor-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: white;
+  font-weight: 700;
+}
+
+.safety-factor div:last-child {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.safety-factor span {
+  color: #777;
+}

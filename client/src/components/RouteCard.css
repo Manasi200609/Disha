@@ -1,0 +1,551 @@
+/* =========================================================
+   DISHA ROUTE CARD
+   ========================================================= */
+
+.route-card {
+  --route-bg: #fffaf4;
+  --route-text: #3a2927;
+  --route-muted: #806e68;
+
+  --route-terracotta: #b86650;
+  --route-terracotta-dark: #934937;
+  --route-terracotta-soft: #ead0c4;
+
+  --route-border: rgba(58, 41, 39, 0.11);
+
+  --route-safe: #47745b;
+  --route-safe-soft: #dce9df;
+
+  --route-moderate: #a66a35;
+  --route-moderate-soft: #f0dfc9;
+
+  --route-low: #c23b35;
+  --route-low-soft: #f3d4d1;
+
+  position: relative;
+
+  width: 100%;
+
+  padding: 16px;
+
+  background: var(--route-bg);
+
+  border: 1px solid var(--route-border);
+  border-radius: 18px;
+
+  color: var(--route-text);
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.route-card:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 7px 20px rgba(58, 41, 39, 0.07);
+}
+
+.route-card:active {
+  transform: scale(0.99);
+}
+
+
+/* =========================================================
+   SELECTED
+   ========================================================= */
+
+.route-card.selected {
+  border: 1.5px solid var(--route-terracotta);
+
+  box-shadow:
+    0 0 0 3px rgba(184, 102, 80, 0.08);
+}
+
+
+/* =========================================================
+   RECOMMENDED
+   ========================================================= */
+
+.route-card.recommended {
+  border-color: rgba(184, 102, 80, 0.3);
+}
+
+.route-recommended-badge {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  margin-bottom: 12px;
+
+  padding: 5px 8px;
+
+  border-radius: 7px;
+
+  background: var(--route-terracotta-soft);
+
+  color: var(--route-terracotta-dark);
+
+  font-size: 6px;
+  font-weight: 900;
+
+  letter-spacing: 0.9px;
+}
+
+.route-recommended-badge span {
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.route-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.route-card-title {
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.route-card-title h3 {
+  margin: 0;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  line-height: 1.25;
+}
+
+.route-card-title p {
+  margin: 4px 0 0;
+
+  color: var(--route-muted);
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   RADIO
+   ========================================================= */
+
+.route-radio {
+  width: 19px;
+  height: 19px;
+
+  flex-shrink: 0;
+
+  border: 1.5px solid rgba(128, 110, 104, 0.45);
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.route-card.selected .route-radio {
+  border-color: var(--route-terracotta);
+}
+
+.route-radio span {
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: transparent;
+}
+
+.route-card.selected .route-radio span {
+  background: var(--route-terracotta);
+}
+
+
+/* =========================================================
+   SAFETY SCORE
+   ========================================================= */
+
+.route-safety-score {
+  min-width: 58px;
+
+  display: grid;
+
+  grid-template-columns: auto auto;
+
+  align-items: baseline;
+
+  justify-content: end;
+
+  column-gap: 2px;
+
+  text-align: right;
+}
+
+.route-safety-score strong {
+  font-size: 21px;
+  font-weight: 900;
+
+  line-height: 1;
+}
+
+.route-safety-score > span {
+  font-size: 7px;
+
+  color: var(--route-muted);
+}
+
+.route-safety-score small {
+  grid-column: 1 / -1;
+
+  margin-top: 3px;
+
+  color: var(--route-muted);
+
+  font-size: 5px;
+  font-weight: 900;
+
+  letter-spacing: 0.8px;
+}
+
+.route-safety-score.safe strong {
+  color: var(--route-safe);
+}
+
+.route-safety-score.moderate strong {
+  color: var(--route-moderate);
+}
+
+.route-safety-score.low strong {
+  color: var(--route-low);
+}
+
+
+/* =========================================================
+   SAFETY LEVEL
+   ========================================================= */
+
+.route-safety-level {
+  margin-top: 13px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+}
+
+.route-safety-level strong {
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.route-safety-label {
+  color: var(--route-muted);
+
+  font-size: 8px;
+}
+
+.route-safety-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+}
+
+.route-safety-dot.safe {
+  background: var(--route-safe);
+
+  box-shadow:
+    0 0 0 3px var(--route-safe-soft);
+}
+
+.route-safety-dot.moderate {
+  background: var(--route-moderate);
+
+  box-shadow:
+    0 0 0 3px var(--route-moderate-soft);
+}
+
+.route-safety-dot.low {
+  background: var(--route-low);
+
+  box-shadow:
+    0 0 0 3px var(--route-low-soft);
+}
+
+
+/* =========================================================
+   AI REASON
+   ========================================================= */
+
+.route-ai-reason {
+  margin-top: 13px;
+
+  padding: 10px;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 8px;
+
+  border-radius: 11px;
+
+  background: var(--route-terracotta-soft);
+}
+
+.route-ai-icon {
+  width: 22px;
+  height: 22px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: var(--route-terracotta);
+
+  color: white;
+
+  font-size: 10px;
+}
+
+.route-ai-reason > div:last-child {
+  flex: 1;
+}
+
+.route-ai-reason span {
+  display: block;
+
+  color: var(--route-terracotta-dark);
+
+  font-size: 5px;
+  font-weight: 900;
+
+  letter-spacing: 0.8px;
+}
+
+.route-ai-reason p {
+  margin: 4px 0 0;
+
+  color: var(--route-text);
+
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   SAFETY FACTORS
+   ========================================================= */
+
+.route-factors {
+  margin-top: 13px;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 6px;
+}
+
+.route-factor {
+  min-width: 0;
+
+  padding: 8px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  border: 1px solid var(--route-border);
+
+  border-radius: 9px;
+
+  background: rgba(128, 110, 104, 0.035);
+}
+
+.factor-icon {
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  background: var(--route-terracotta-soft);
+
+  color: var(--route-terracotta-dark);
+
+  font-size: 9px;
+}
+
+.route-factor div {
+  min-width: 0;
+}
+
+.route-factor small {
+  display: block;
+
+  color: var(--route-muted);
+
+  font-size: 6px;
+}
+
+.route-factor strong {
+  display: block;
+
+  margin-top: 2px;
+
+  overflow: hidden;
+
+  color: var(--route-text);
+
+  font-size: 7px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   SELECT BUTTON
+   ========================================================= */
+
+.route-select-button {
+  width: 100%;
+
+  height: 40px;
+
+  margin-top: 13px;
+
+  padding: 0 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid var(--route-terracotta);
+
+  border-radius: 10px;
+
+  background: transparent;
+
+  color: var(--route-terracotta-dark);
+
+  font-size: 9px;
+  font-weight: 850;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.route-select-button span {
+  font-size: 14px;
+}
+
+.route-select-button:hover {
+  background: var(--route-terracotta);
+
+  color: white;
+}
+
+.route-card.selected .route-select-button {
+  background: var(--route-terracotta);
+
+  color: white;
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+[data-theme="dark"] .route-card {
+  --route-bg: #211b1d;
+  --route-text: #f4e9df;
+  --route-muted: #b8a69e;
+
+  --route-terracotta: #c8755d;
+  --route-terracotta-dark: #a65440;
+  --route-terracotta-soft: #382522;
+
+  --route-border: rgba(244, 233, 223, 0.1);
+
+  --route-safe: #72a47f;
+  --route-safe-soft: #233229;
+
+  --route-moderate: #d29359;
+  --route-moderate-soft: #3b2c20;
+
+  --route-low: #e06a63;
+  --route-low-soft: #3c2524;
+}
+
+[data-theme="dark"] .route-card:hover {
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .route-card {
+    padding: 13px;
+  }
+
+  .route-card-title h3 {
+    font-size: 13px;
+  }
+
+  .route-safety-score strong {
+    font-size: 19px;
+  }
+
+  .route-factor {
+    padding: 7px 5px;
+
+    gap: 4px;
+  }
+
+  .factor-icon {
+    display: none;
+  }
+
+  .route-factor strong {
+    font-size: 6.5px;
+  }
+}

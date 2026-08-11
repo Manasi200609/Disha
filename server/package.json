@@ -5,12 +5,14 @@
   "type": "module",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon --exec \"node --env-file=.env\" src/server.js",
+    "start": "node --env-file=.env src/server.js"
   },
   "dependencies": {
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "groq-sdk": "^1.5.0",
     "mongoose": "^9.9.1"
   },
   "devDependencies": {

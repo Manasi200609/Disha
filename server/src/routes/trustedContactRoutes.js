@@ -1,24 +1,31 @@
 import express from "express";
 
 import {
-  addTrustedContact,
   getTrustedContacts,
+  addTrustedContact,
   deleteTrustedContact
 } from "../controllers/trustedContactController.js";
+
 
 const router = express.Router();
 
 
-// Add trusted contact
-router.post("/", addTrustedContact);
+router.get(
+  "/",
+  getTrustedContacts
+);
 
 
-// Get user's trusted contacts
-router.get("/user/:userId", getTrustedContacts);
+router.post(
+  "/",
+  addTrustedContact
+);
 
 
-// Delete trusted contact
-router.delete("/:id", deleteTrustedContact);
+router.delete(
+  "/:id",
+  deleteTrustedContact
+);
 
 
 export default router;

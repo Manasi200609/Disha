@@ -1,0 +1,410 @@
+/* =========================================================
+   DISHA — HELP PLACES
+   ========================================================= */
+
+.help-places {
+  --help-bg: #fffaf4;
+  --help-text: #3a2927;
+  --help-muted: #806e68;
+
+  --help-terracotta: #b86650;
+  --help-terracotta-dark: #934937;
+  --help-terracotta-soft: #ead0c4;
+
+  --help-border: rgba(58, 41, 39, 0.1);
+
+  width: 100%;
+
+  color: var(--help-text);
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.help-places-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.help-places-eyebrow {
+  display: block;
+
+  color: var(--help-terracotta);
+
+  font-size: 6px;
+  font-weight: 900;
+
+  letter-spacing: 1px;
+}
+
+.help-places-header h2 {
+  margin: 5px 0 3px;
+
+  font-size: 16px;
+  font-weight: 900;
+
+  letter-spacing: -0.2px;
+}
+
+.help-places-header p {
+  margin: 0;
+
+  color: var(--help-muted);
+
+  font-size: 8px;
+  line-height: 1.4;
+}
+
+.help-places-header-icon {
+  width: 31px;
+  height: 31px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: var(--help-terracotta-soft);
+
+  color: var(--help-terracotta-dark);
+
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.help-places-empty {
+  margin-top: 13px;
+
+  padding: 13px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  border: 1px dashed var(--help-border);
+  border-radius: 13px;
+
+  background: rgba(128, 110, 104, 0.035);
+}
+
+.help-places-empty-icon {
+  width: 32px;
+  height: 32px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: var(--help-terracotta-soft);
+
+  color: var(--help-terracotta);
+
+  font-size: 18px;
+}
+
+.help-places-empty strong {
+  display: block;
+
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.help-places-empty p {
+  margin: 4px 0 0;
+
+  color: var(--help-muted);
+
+  font-size: 7px;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   PLACES LIST
+   ========================================================= */
+
+.help-places-list {
+  margin-top: 13px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+/* =========================================================
+   PLACE CARD
+   ========================================================= */
+
+.help-place-card {
+  min-width: 0;
+
+  padding: 10px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  background: var(--help-bg);
+
+  border: 1px solid var(--help-border);
+  border-radius: 13px;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.help-place-card:hover {
+  border-color: rgba(184, 102, 80, 0.25);
+
+  background: #fff7ef;
+}
+
+.help-place-card:active {
+  transform: scale(0.99);
+}
+
+
+/* =========================================================
+   PLACE ICON
+   ========================================================= */
+
+.help-place-icon {
+  width: 37px;
+  height: 37px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: var(--help-terracotta-soft);
+
+  color: var(--help-terracotta-dark);
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   PLACE INFORMATION
+   ========================================================= */
+
+.help-place-info {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.help-place-name-row {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  min-width: 0;
+}
+
+.help-place-name-row h3 {
+  min-width: 0;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  font-size: 9px;
+  font-weight: 850;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.help-place-distance {
+  flex-shrink: 0;
+
+  color: var(--help-terracotta-dark);
+
+  font-size: 6px;
+  font-weight: 800;
+}
+
+.help-place-type {
+  display: inline-block;
+
+  margin-top: 3px;
+
+  color: var(--help-terracotta);
+
+  font-size: 6px;
+  font-weight: 800;
+
+  letter-spacing: 0.2px;
+}
+
+.help-place-info p {
+  margin: 3px 0 0;
+
+  overflow: hidden;
+
+  color: var(--help-muted);
+
+  font-size: 6px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   OPEN / CLOSED
+   ========================================================= */
+
+.help-place-open {
+  display: inline-block;
+
+  margin-top: 4px;
+
+  font-size: 5px;
+  font-weight: 850;
+}
+
+.help-place-open.open {
+  color: #47745b;
+}
+
+.help-place-open.closed {
+  color: #a66a35;
+}
+
+
+/* =========================================================
+   NAVIGATE BUTTON
+   ========================================================= */
+
+.help-place-navigate {
+  width: 30px;
+  height: 30px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--help-border);
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: var(--help-terracotta-dark);
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.help-place-navigate:hover {
+  background: var(--help-terracotta-soft);
+
+  border-color: transparent;
+}
+
+.help-place-navigate:active {
+  transform: scale(0.94);
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+[data-theme="dark"] .help-places {
+  --help-bg: #211b1d;
+  --help-text: #f4e9df;
+  --help-muted: #b8a69e;
+
+  --help-terracotta: #c8755d;
+  --help-terracotta-dark: #a65440;
+  --help-terracotta-soft: #382522;
+
+  --help-border: rgba(244, 233, 223, 0.1);
+}
+
+[data-theme="dark"] .help-place-card:hover {
+  background: #2a2021;
+}
+
+[data-theme="dark"] .help-places-empty {
+  background: rgba(244, 233, 223, 0.025);
+}
+
+[data-theme="dark"] .help-place-open.open {
+  color: #72a47f;
+}
+
+[data-theme="dark"] .help-place-open.closed {
+  color: #d29359;
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .help-place-icon {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 10px;
+  }
+
+  .help-place-navigate {
+    width: 27px;
+    height: 27px;
+  }
+
+  .help-place-name-row h3 {
+    font-size: 8px;
+  }
+}

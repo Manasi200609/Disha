@@ -1,114 +1,183 @@
 import TrustedContact from "../models/TrustedContact.js";
-import User from "../models/User.js";
 
 
-// ADD CONTACT
-const addTrustedContact = async (req, res) => {
-  try {
-    const {
-      userId,
-      name,
-      phone,
-      relationship
-    } = req.body;
-
-    if (!userId || !name || !phone) {
-      return res.status(400).json({
-        success: false,
-        message: "User, name and phone are required"
-      });
-    }
-
-    const user = await User.findById(userId);
-
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found"
-      });
-    }
-
-    const trustedContact = await TrustedContact.create({
-      userId,
-      name,
-      phone,
-      relationship
-    });
-
-    res.status(201).json({
-      success: true,
-      message: "Trusted contact added successfully",
-      trustedContact
-    });
-
-  } catch (error) {
-    console.error("Add contact error:", error.message);
-
-    res.status(500).json({
-      success: false,
-      message: "Failed to add trusted contact"
-    });
-  }
-};
-
-
+// ============================================================
 // GET CONTACTS
-const getTrustedContacts = async (req, res) => {
+// ============================================================
+
+const getTrustedContacts = async (
+  req,
+  res
+) => {
+
   try {
-    const { userId } = req.params;
 
-    const contacts = await TrustedContact.find({
-      userId
-    }).sort({ createdAt: -1 });
+    const contacts =
+      await TrustedContact.find()
+        .sort({ createdAt: -1 });
 
-    res.json({
+
+    return res.status(200).json({
+
       success: true,
-      contacts
+
+      data: contacts
+
     });
 
   } catch (error) {
-    console.error("Get contacts error:", error.message);
 
-    res.status(500).json({
+    console.error(error);
+
+    return res.status(500).json({
+
       success: false,
-      message: "Failed to get trusted contacts"
+
+      message:
+        "Unable to load trusted contacts."
+
     });
+
   }
+
 };
 
 
-// DELETE CONTACT
-const deleteTrustedContact = async (req, res) => {
-  try {
-    const { id } = req.params;
+// ============================================================
+// ADD CONTACT
+// ============================================================
 
-    const contact = await TrustedContact.findByIdAndDelete(id);
+const addTrustedContact = async (
+  req,
+  res
+) => {
+
+  try {
+
+    const {
+      name,
+      phone
+    } = req.body || {};
+
+
+    if (
+      !name?.trim() ||
+      !phone?.trim()
+    ) {
+
+      return res.status(400).json({
+
+        success: false,
+
+        message:
+          "Name and phone number are required."
+
+      });
+
+    }
+
+
+    const contact =
+      await TrustedContact.create({
+
+        name: name.trim(),
+
+        phone: phone.trim()
+
+      });
+
+
+    return res.status(201).json({
+
+      success: true,
+
+      data: contact
+
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    return res.status(500).json({
+
+      success: false,
+
+      message:
+        "Unable to add trusted contact."
+
+    });
+
+  }
+
+};
+
+
+// ============================================================
+// DELETE CONTACT
+// ============================================================
+
+const deleteTrustedContact = async (
+  req,
+  res
+) => {
+
+  try {
+
+    const {
+      id
+    } = req.params;
+
+
+    const contact =
+      await TrustedContact.findByIdAndDelete(
+        id
+      );
+
 
     if (!contact) {
+
       return res.status(404).json({
+
         success: false,
-        message: "Trusted contact not found"
+
+        message:
+          "Trusted contact not found."
+
       });
+
     }
 
-    res.json({
+
+    return res.status(200).json({
+
       success: true,
-      message: "Trusted contact deleted successfully"
+
+      message:
+        "Trusted contact deleted."
+
     });
 
   } catch (error) {
-    console.error("Delete contact error:", error.message);
 
-    res.status(500).json({
+    console.error(error);
+
+    return res.status(500).json({
+
       success: false,
-      message: "Failed to delete trusted contact"
+
+      message:
+        "Unable to delete trusted contact."
+
     });
+
   }
+
 };
 
 
 export {
-  addTrustedContact,
   getTrustedContacts,
+  addTrustedContact,
   deleteTrustedContact
 };

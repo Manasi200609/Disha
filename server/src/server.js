@@ -1,56 +1,97 @@
 import express from "express";
-import dotenv from "dotenv";
+import cors from "cors";
+import "dotenv/config";
 
-import connectDB from "./config/db.js";
-
-import userRoutes from "./routes/userRoutes.js";
-import journeyRoutes from "./routes/journeyRoutes.js";
+import routeRoutes from "./routes/routeRoutes.js";
 import trustedContactRoutes from "./routes/trustedContactRoutes.js";
-
-import errorMiddleware from "./middleware/errorMiddleware.js";
-
-dotenv.config();
 
 const app = express();
 
 const PORT = process.env.PORT || 5000;
 
+// ============================================================
+// MIDDLEWARE
+// ============================================================
 
-// Connect MongoDB
-connectDB();
+app.use(cors());
 
-
-// Middleware
 app.use(express.json());
 
+// ============================================================
+// HEALTH CHECK
+// ============================================================
 
-// Health check
-app.get("/api/health", (req, res) => {
+app.get("/", (req, res) => {
   res.json({
     success: true,
-    message: "Disha backend is running"
+    message: "Disha server is running.",
   });
 });
 
+// ============================================================
+// ROUTES
+// ============================================================
 
-// API routes
-app.use("/api/users", userRoutes);
-
-app.use("/api/journeys", journeyRoutes);
+app.use(
+  "/api/routes",
+  routeRoutes
+);
 
 app.use(
   "/api/trusted-contacts",
   trustedContactRoutes
 );
 
+// ============================================================
+// 404
+// ============================================================
 
-// Error handler
-app.use(errorMiddleware);
-
-
-// Start server
-app.listen(PORT, () => {
-  console.log(
-    `Disha server running on http://localhost:${PORT}`
-  );
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message:
+      `Route not found: ${req.method} ${req.originalUrl}`,
+  });
 });
+
+// ============================================================
+// ERROR HANDLER
+// ============================================================
+
+app.use((error, req, res, next) => {
+  console.error(
+    "❌ Server error:",
+    error
+  );
+
+  res.status(500).json({
+    success: false,
+    message: "Internal server error.",
+  });
+});
+
+// ============================================================
+// START SERVER
+// ============================================================
+
+app.listen(
+  PORT,
+  "0.0.0.0",
+  () => {
+    console.log(
+      `🔥 DISHA SERVER RUNNING ON http://0.0.0.0:${PORT}`
+    );
+
+    console.log(
+      `📱 Phone API: http://10.137.204.201:${PORT}`
+    );
+
+    console.log(
+      "🗺️ Route API: POST /api/routes"
+    );
+
+    console.log(
+      "👥 Trusted Contacts API: /api/trusted-contacts"
+    );
+  }
+);

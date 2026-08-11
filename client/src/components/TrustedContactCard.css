@@ -1,0 +1,86 @@
+.trusted-contacts {
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
+}
+
+.trusted-header h2 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.trusted-header p {
+  margin: 6px 0 18px;
+  color: #666;
+  font-size: 14px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px;
+  border: 1px solid #ddd;
+  border-radius: 11px;
+  outline: none;
+  font-size: 14px;
+}
+
+.contact-form button {
+  border: none;
+  border-radius: 12px;
+  padding: 13px;
+  background: #111;
+  color: white;
+  font-weight: 600;
+}
+
+.contact-list {
+  margin-top: 20px;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-info span {
+  color: #777;
+  font-size: 13px;
+}
+
+.delete-contact {
+  border: none;
+  background: transparent;
+  color: #b3261e;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.contact-error {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #fff1ef;
+  color: #a52b22;
+  font-size: 13px;
+}
+
+.empty-contacts {
+  color: #777;
+  font-size: 14px;
+}

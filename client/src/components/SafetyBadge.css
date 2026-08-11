@@ -1,0 +1,250 @@
+/* =========================================================
+   DISHA SAFETY BADGE
+   ========================================================= */
+
+.safety-badge {
+  --badge-text: #3a2927;
+  --badge-muted: #806e68;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  width: fit-content;
+
+  border-radius: 999px;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* =========================================================
+   DOT
+   ========================================================= */
+
+.safety-badge-dot {
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.safety-badge-content {
+  display: flex;
+  align-items: baseline;
+
+  gap: 5px;
+}
+
+.safety-badge-level {
+  font-weight: 850;
+
+  line-height: 1;
+}
+
+.safety-badge-score {
+  opacity: 0.7;
+
+  font-weight: 650;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   SAFE
+   ========================================================= */
+
+.safety-badge.safe {
+  --badge-bg: #dce9df;
+  --badge-color: #47745b;
+  --badge-dot: #47745b;
+}
+
+.safety-badge.safe .safety-badge-dot {
+  background: var(--badge-dot);
+
+  box-shadow:
+    0 0 0 3px rgba(71, 116, 91, 0.15);
+}
+
+
+/* =========================================================
+   MODERATE
+   ========================================================= */
+
+.safety-badge.moderate {
+  --badge-bg: #f0dfc9;
+  --badge-color: #a66a35;
+  --badge-dot: #a66a35;
+}
+
+.safety-badge.moderate .safety-badge-dot {
+  background: var(--badge-dot);
+
+  box-shadow:
+    0 0 0 3px rgba(166, 106, 53, 0.14);
+}
+
+
+/* =========================================================
+   RISK
+   ========================================================= */
+
+.safety-badge.risk {
+  --badge-bg: #f3d4d1;
+  --badge-color: #c62828;
+  --badge-dot: #d62828;
+}
+
+.safety-badge.risk .safety-badge-dot {
+  background: var(--badge-dot);
+
+  box-shadow:
+    0 0 0 3px rgba(214, 40, 40, 0.15);
+}
+
+
+/* =========================================================
+   SIZES
+   ========================================================= */
+
+.safety-badge.small {
+  gap: 5px;
+
+  padding: 5px 8px;
+
+  background: var(--badge-bg);
+
+  color: var(--badge-color);
+}
+
+.safety-badge.small .safety-badge-dot {
+  width: 6px;
+  height: 6px;
+}
+
+.safety-badge.small .safety-badge-level {
+  font-size: 7px;
+
+  letter-spacing: 0.3px;
+}
+
+.safety-badge.small .safety-badge-score {
+  font-size: 6px;
+}
+
+
+.safety-badge.medium {
+  gap: 7px;
+
+  padding: 7px 10px;
+
+  background: var(--badge-bg);
+
+  color: var(--badge-color);
+}
+
+.safety-badge.medium .safety-badge-dot {
+  width: 7px;
+  height: 7px;
+}
+
+.safety-badge.medium .safety-badge-level {
+  font-size: 8px;
+
+  letter-spacing: 0.4px;
+}
+
+.safety-badge.medium .safety-badge-score {
+  font-size: 7px;
+}
+
+
+.safety-badge.large {
+  gap: 8px;
+
+  padding: 9px 12px;
+
+  background: var(--badge-bg);
+
+  color: var(--badge-color);
+}
+
+.safety-badge.large .safety-badge-dot {
+  width: 9px;
+  height: 9px;
+}
+
+.safety-badge.large .safety-badge-level {
+  font-size: 10px;
+
+  letter-spacing: 0.5px;
+}
+
+.safety-badge.large .safety-badge-score {
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+[data-theme="dark"] .safety-badge.safe {
+  --badge-bg: #233229;
+  --badge-color: #72a47f;
+  --badge-dot: #72a47f;
+}
+
+[data-theme="dark"] .safety-badge.moderate {
+  --badge-bg: #3b2c20;
+  --badge-color: #d29359;
+  --badge-dot: #d29359;
+}
+
+[data-theme="dark"] .safety-badge.risk {
+  --badge-bg: #3c2524;
+  --badge-color: #e06a63;
+  --badge-dot: #e06a63;
+}
+
+
+/* =========================================================
+   EMERGENCY STATE
+   Keep red sharp even in the soft Disha palette.
+   ========================================================= */
+
+.safety-badge.risk .safety-badge-level {
+  font-weight: 900;
+}
+
+.safety-badge.risk {
+  animation: riskBadgeAppear 0.25s ease-out;
+}
+
+@keyframes riskBadgeAppear {
+  from {
+    opacity: 0.5;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

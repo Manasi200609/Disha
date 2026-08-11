@@ -1,218 +1,277 @@
-import './JourneyStatus.css';
+import { useEffect, useState } from "react";
+import "./JourneyStatus.css";
 
 function JourneyStatus({
-  status = 'active',
-  destination = 'Your destination',
-  eta = '12 min',
-  elapsedTime = '08 min',
-  safetyScore = 87,
-  onCheckIn,
+  journey,
+  destination = "Your destination",
+  eta,
+  safetyScore,
+  isMonitoring = true,
 }) {
-  const statusConfig = {
-    active: {
-      label: 'Journey active',
-      subtext: 'Disha is watching over you',
-      className: 'active',
-    },
+  const [elapsedMinutes, setElapsedMinutes] = useState(0);
 
-    checkin: {
-      label: 'Check-in required',
-      subtext: 'Let your trusted contact know you are okay',
-      className: 'checkin',
-    },
+  // ------------------------------------------------------------
+  // Calculate elapsed journey time
+  // ------------------------------------------------------------
 
-    completed: {
-      label: 'Journey completed',
-      subtext: 'You reached your destination safely',
-      className: 'completed',
-    },
+  useEffect(() => {
+    if (!journey?.startedAt) {
+      setElapsedMinutes(0);
+      return;
+    }
 
-    paused: {
-      label: 'Journey paused',
-      subtext: 'Journey monitoring is temporarily paused',
-      className: 'paused',
-    },
-  };
+    const updateElapsed = () => {
+      const started = new Date(journey.startedAt).getTime();
+      const now = Date.now();
 
-  const currentStatus =
-    statusConfig[status] || statusConfig.active;
+      const minutes = Math.max(
+        0,
+        Math.floor((now - started) / 60000)
+      );
+
+      setElapsedMinutes(minutes);
+    };
+
+    updateElapsed();
+
+    const interval = setInterval(
+      updateElapsed,
+      1000
+    );
+
+    return () => clearInterval(interval);
+  }, [journey?.startedAt]);
+
+  // ------------------------------------------------------------
+  // Dynamic values
+  // ------------------------------------------------------------
+
+  const currentSafety =
+    safetyScore ??
+    journey?.safetyScore ??
+    87;
+
+  const currentEta =
+    eta ??
+    journey?.eta ??
+    "--";
+
+  const active =
+    journey?.status === "active";
+
+  const monitoring =
+    active && isMonitoring;
+
+  const heading =
+    journey?.destination ||
+    destination ||
+    "Your destination";
+
+  // ------------------------------------------------------------
+  // UI
+  // ------------------------------------------------------------
 
   return (
-    <section className="journey-status">
+    <div className="journey-status">
 
-      {/* =========================================
-          STATUS HEADER
-      ========================================== */}
+      {/* ======================================================
+          DESTINATION + ETA
+      ====================================================== */}
 
-      <div className="journey-status-header">
+      <div className="journey-top-grid">
 
-        <div className="journey-status-indicator">
+        <div className="destination-card">
 
-          <span
-            className={`journey-status-pulse ${currentStatus.className}`}
-          />
+          <span className="card-label">
+            DESTINATION
+          </span>
 
-          <div>
-            <span className="journey-status-label">
-              {currentStatus.label}
+          <strong>
+            {heading}
+          </strong>
+
+        </div>
+
+
+        <div className="eta-card">
+
+          <span className="card-label">
+            ETA
+          </span>
+
+          <strong>
+            {currentEta === "--"
+              ? "--"
+              : `${currentEta} min`}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      {/* ======================================================
+          MAIN JOURNEY CARD
+      ====================================================== */}
+
+      <div className="journey-main-card">
+
+        {/* Header */}
+
+        <div className="journey-card-header">
+
+          <div className="journey-active-info">
+
+            <span
+              className={`status-dot ${
+                active
+                  ? "active"
+                  : "inactive"
+              }`}
+            />
+
+            <div>
+
+              <strong>
+                {active
+                  ? "Journey active"
+                  : "Journey ended"}
+              </strong>
+
+              <small>
+                {active
+                  ? "Disha is watching over you"
+                  : "Journey monitoring stopped"}
+              </small>
+
+            </div>
+
+          </div>
+
+
+          <div className="safety-score">
+
+            <span>
+              SAFETY
             </span>
 
-            <p>{currentStatus.subtext}</p>
+            <strong>
+              {currentSafety}
+            </strong>
+
           </div>
 
         </div>
 
 
-        {/* Safety score */}
+        {/* Heading */}
 
-        <div className="journey-mini-score">
+        <div className="heading-card">
 
-          <span>SAFETY</span>
+          <div className="heading-icon">
+            →
+          </div>
 
-          <strong>{safetyScore}</strong>
+          <div>
+
+            <span>
+              HEADING TO
+            </span>
+
+            <strong>
+              {heading}
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        {/* ==================================================
+            LIVE STATS
+        ================================================== */}
+
+        <div className="journey-stats">
+
+          <div className="journey-stat">
+
+            <span className="stat-icon">
+              ◷
+            </span>
+
+            <div>
+
+              <small>
+                Elapsed
+              </small>
+
+              <strong>
+                {String(
+                  elapsedMinutes
+                ).padStart(2, "0")} min
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div className="journey-stat">
+
+            <span className="stat-icon">
+              ↓
+            </span>
+
+            <div>
+
+              <small>
+                ETA
+              </small>
+
+              <strong>
+                {currentEta === "--"
+                  ? "--"
+                  : `${currentEta} min`}
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div className="journey-stat">
+
+            <span className="stat-icon">
+              ♡
+            </span>
+
+            <div>
+
+              <small>
+                Monitoring
+              </small>
+
+              <strong
+                className={
+                  monitoring
+                    ? "monitoring-on"
+                    : "monitoring-off"
+                }
+              >
+                {monitoring
+                  ? "ON"
+                  : "OFF"}
+              </strong>
+
+            </div>
+
+          </div>
 
         </div>
 
       </div>
 
-
-      {/* =========================================
-          DESTINATION
-      ========================================== */}
-
-      <div className="journey-destination">
-
-        <div className="journey-destination-icon">
-          ●
-        </div>
-
-        <div>
-
-          <span>HEADING TO</span>
-
-          <strong>{destination}</strong>
-
-        </div>
-
-      </div>
-
-
-      {/* =========================================
-          JOURNEY STATS
-      ========================================== */}
-
-      <div className="journey-stats">
-
-        <div className="journey-stat">
-
-          <span className="journey-stat-icon">
-            ◷
-          </span>
-
-          <div>
-            <small>Elapsed</small>
-            <strong>{elapsedTime}</strong>
-          </div>
-
-        </div>
-
-
-        <div className="journey-stat-divider" />
-
-
-        <div className="journey-stat">
-
-          <span className="journey-stat-icon">
-            ↓
-          </span>
-
-          <div>
-            <small>ETA</small>
-            <strong>{eta}</strong>
-          </div>
-
-        </div>
-
-
-        <div className="journey-stat-divider" />
-
-
-        <div className="journey-stat">
-
-          <span className="journey-stat-icon">
-            ♡
-          </span>
-
-          <div>
-            <small>Monitoring</small>
-            <strong>ON</strong>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      {/* =========================================
-          CHECK-IN
-      ========================================== */}
-
-      {status === 'checkin' && (
-        <button
-          className="journey-checkin-button"
-          onClick={onCheckIn}
-        >
-          <span>
-            I'm safe
-          </span>
-
-          <span>
-            ✓
-          </span>
-        </button>
-      )}
-
-
-      {/* =========================================
-          ACTIVE JOURNEY MESSAGE
-      ========================================== */}
-
-      {status === 'active' && (
-        <div className="journey-monitoring-message">
-
-          <span className="monitoring-icon">
-            ✦
-          </span>
-
-          <p>
-            Disha is monitoring your journey.
-            If something changes, we'll check in
-            with you.
-          </p>
-
-        </div>
-      )}
-
-
-      {/* =========================================
-          COMPLETED MESSAGE
-      ========================================== */}
-
-      {status === 'completed' && (
-        <div className="journey-completed-message">
-
-          <span>
-            ✓
-          </span>
-
-          <p>
-            You made it. Journey safely completed.
-          </p>
-
-        </div>
-      )}
-
-    </section>
+    </div>
   );
 }
 

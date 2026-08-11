@@ -3,14 +3,7 @@ import EmergencyAlert from "../components/EmergencyAlert";
 import "./Home.css";
 
 function Home({ darkMode, toggleDarkMode }) {
-
-  // =====================================================
-  // STATE
-  // =====================================================
-
-  const [showEmergencyAlert, setShowEmergencyAlert] =
-    useState(false);
-
+  const [showEmergencyAlert, setShowEmergencyAlert] = useState(false);
 
   // =====================================================
   // NAVIGATION
@@ -20,19 +13,38 @@ function Home({ darkMode, toggleDarkMode }) {
     window.location.href = "/routes";
   };
 
-
   const handleProfile = () => {
     window.location.href = "/profile";
   };
 
+  // =====================================================
+  // EMERGENCY
+  // =====================================================
 
-  // =====================================================
-  // RENDER
-  // =====================================================
+  const handleEmergency = () => {
+    setShowEmergencyAlert(true);
+  };
+
+  const handleCloseEmergency = () => {
+    setShowEmergencyAlert(false);
+  };
+
+  const handleConfirmEmergency = () => {
+    console.log("Emergency confirmed");
+
+    // Close confirmation modal
+    setShowEmergencyAlert(false);
+
+    // Later you can connect this to:
+    // - trusted contacts
+    // - backend API
+    // - location sharing
+    // - emergency notification
+    // - SOS service
+  };
 
   return (
     <main className="home-page">
-
 
       {/* =================================
           HEADER
@@ -47,23 +59,19 @@ function Home({ darkMode, toggleDarkMode }) {
           </div>
 
           <div>
-
             <span className="home-greeting">
               Welcome back
             </span>
 
-            <h2>
-              Disha
-            </h2>
-
+            <h2>Disha</h2>
           </div>
 
         </div>
 
-
         <div className="home-header-actions">
 
           <button
+            type="button"
             className="theme-toggle"
             onClick={toggleDarkMode}
             aria-label="Toggle dark mode"
@@ -71,8 +79,8 @@ function Home({ darkMode, toggleDarkMode }) {
             {darkMode ? "☀" : "☾"}
           </button>
 
-
           <button
+            type="button"
             className="profile-button"
             onClick={handleProfile}
             aria-label="Open profile"
@@ -84,14 +92,11 @@ function Home({ darkMode, toggleDarkMode }) {
 
       </header>
 
-
-
       {/* =================================
           MAIN CONTENT
       ================================= */}
 
       <section className="home-content">
-
 
         {/* =================================
             HERO
@@ -103,32 +108,20 @@ function Home({ darkMode, toggleDarkMode }) {
             READY WHEN YOU ARE
           </span>
 
-
           <h1>
-
             Where are you
-
             <br />
-
-            <span>
-              headed today?
-            </span>
-
+            <span>headed today?</span>
           </h1>
 
-
           <p>
-
             Tell Disha where you're going.
             We'll help you find a route that
             feels safer and keep you connected
             along the way.
-
           </p>
 
         </div>
-
-
 
         {/* =================================
             PLAN JOURNEY
@@ -136,22 +129,15 @@ function Home({ darkMode, toggleDarkMode }) {
 
         <section className="journey-start">
 
-
-          {/* CURRENT LOCATION */}
-
           <div className="journey-location">
 
             <div className="location-icon">
               <span />
             </div>
 
-
             <div className="location-content">
 
-              <span>
-                FROM
-              </span>
-
+              <span>FROM</span>
 
               <strong>
                 Your current location
@@ -161,17 +147,12 @@ function Home({ darkMode, toggleDarkMode }) {
 
           </div>
 
-
-
           <div className="location-line">
             <span />
           </div>
 
-
-
-          {/* DESTINATION */}
-
           <button
+            type="button"
             className="destination-input"
             onClick={handlePlanJourney}
           >
@@ -180,13 +161,9 @@ function Home({ darkMode, toggleDarkMode }) {
               <span />
             </div>
 
-
             <div className="destination-content">
 
-              <span>
-                TO
-              </span>
-
+              <span>TO</span>
 
               <strong>
                 Where do you want to go?
@@ -194,40 +171,29 @@ function Home({ darkMode, toggleDarkMode }) {
 
             </div>
 
-
             <span className="destination-arrow">
               →
             </span>
 
           </button>
 
-
-
-          {/* PLAN SAFE ROUTE */}
-
           <button
+            type="button"
             className="btn btn-primary plan-button"
             onClick={handlePlanJourney}
           >
-
             Plan a safe route
 
-            <span>
-              →
-            </span>
-
+            <span>→</span>
           </button>
 
         </section>
-
-
 
         {/* =================================
             QUICK SAFETY
         ================================= */}
 
         <section className="quick-safety">
-
 
           <div className="section-heading">
 
@@ -237,7 +203,6 @@ function Home({ darkMode, toggleDarkMode }) {
                 YOUR SAFETY NET
               </span>
 
-
               <h3>
                 You're not alone.
               </h3>
@@ -246,14 +211,10 @@ function Home({ darkMode, toggleDarkMode }) {
 
           </div>
 
-
-
           <div className="safety-list">
 
-
-            {/* TRUSTED CONTACTS */}
-
             <button
+              type="button"
               className="safety-item"
               onClick={handleProfile}
             >
@@ -262,13 +223,11 @@ function Home({ darkMode, toggleDarkMode }) {
                 ♡
               </div>
 
-
               <div className="safety-item-text">
 
                 <strong>
                   Trusted contacts
                 </strong>
-
 
                 <span>
                   People ready to hear from you
@@ -276,18 +235,14 @@ function Home({ darkMode, toggleDarkMode }) {
 
               </div>
 
-
               <span className="safety-item-arrow">
                 →
               </span>
 
             </button>
 
-
-
-            {/* RECENT JOURNEYS */}
-
             <button
+              type="button"
               className="safety-item"
               onClick={handlePlanJourney}
             >
@@ -296,20 +251,17 @@ function Home({ darkMode, toggleDarkMode }) {
                 ◷
               </div>
 
-
               <div className="safety-item-text">
 
                 <strong>
                   Recent journeys
                 </strong>
 
-
                 <span>
                   View where you've been
                 </span>
 
               </div>
-
 
               <span className="safety-item-arrow">
                 →
@@ -321,8 +273,6 @@ function Home({ darkMode, toggleDarkMode }) {
 
         </section>
 
-
-
         {/* =================================
             EMERGENCY
         ================================= */}
@@ -330,16 +280,15 @@ function Home({ darkMode, toggleDarkMode }) {
         <section className="emergency-section">
 
           <button
+            type="button"
             className="emergency-button"
-            onClick={() =>
-              setShowEmergencyAlert(true)
-            }
+            onClick={handleEmergency}
+            aria-label="I feel unsafe - get immediate help"
           >
 
-            <span className="emergency-icon">
+            <span className="home-emergency-icon">
               !
             </span>
-
 
             <span className="emergency-content">
 
@@ -347,13 +296,11 @@ function Home({ darkMode, toggleDarkMode }) {
                 I feel unsafe
               </strong>
 
-
               <small>
                 Get immediate help
               </small>
 
             </span>
-
 
             <span className="emergency-arrow">
               →
@@ -363,10 +310,7 @@ function Home({ darkMode, toggleDarkMode }) {
 
         </section>
 
-
       </section>
-
-
 
       {/* =================================
           BOTTOM NAVIGATION
@@ -374,16 +318,13 @@ function Home({ darkMode, toggleDarkMode }) {
 
       <nav className="bottom-nav">
 
-
-        {/* HOME */}
-
         <button
+          type="button"
           className="nav-item active"
           onClick={() => {
             window.location.href = "/home";
           }}
         >
-
           <span className="nav-icon">
             ◉
           </span>
@@ -391,18 +332,13 @@ function Home({ darkMode, toggleDarkMode }) {
           <span>
             Home
           </span>
-
         </button>
 
-
-
-        {/* JOURNEY */}
-
         <button
+          type="button"
           className="nav-item"
           onClick={handlePlanJourney}
         >
-
           <span className="nav-icon">
             ⌖
           </span>
@@ -410,18 +346,13 @@ function Home({ darkMode, toggleDarkMode }) {
           <span>
             Journey
           </span>
-
         </button>
 
-
-
-        {/* PROFILE */}
-
         <button
+          type="button"
           className="nav-item"
           onClick={handleProfile}
         >
-
           <span className="nav-icon">
             ○
           </span>
@@ -429,30 +360,23 @@ function Home({ darkMode, toggleDarkMode }) {
           <span>
             Profile
           </span>
-
         </button>
 
       </nav>
 
-
-
       {/* =================================
-          EMERGENCY ALERT MODAL
+          EMERGENCY ALERT
       ================================= */}
 
-      {showEmergencyAlert && (
-
-        <EmergencyAlert
-          onClose={() =>
-            setShowEmergencyAlert(false)
-          }
-        />
-
-      )}
+      <EmergencyAlert
+        open={showEmergencyAlert}
+        onClose={handleCloseEmergency}
+        onConfirm={handleConfirmEmergency}
+      />
 
     </main>
   );
 }
 
-
 export default Home;
+

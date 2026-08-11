@@ -1,139 +1,90 @@
 import "./SaferRouteExplanation.css";
 
-export default function SaferRouteExplanation({
-  route
-}) {
-  if (!route) {
-    return null;
-  }
+export default function SaferRouteExplanation({ route }) {
+  const assessment = route?.assessment;
 
-  const score =
-    typeof route.safetyScore === "number"
-      ? route.safetyScore
-      : null;
+  const title =
+    typeof assessment === "object"
+      ? assessment?.title
+      : assessment || "Safer route";
 
-  const activityScore =
-    typeof route.activityScore === "number"
-      ? route.activityScore
-      : null;
+  const description =
+    typeof assessment === "object"
+      ? assessment?.description
+      : route?.description ||
+        "Disha selected this route based on available safety signals.";
 
-  const helpScore =
-    typeof route.helpScore === "number"
-      ? route.helpScore
-      : null;
-
-  const incidentScore =
-    typeof route.incidentScore === "number"
-      ? route.incidentScore
-      : null;
-
-
-  const getSummary = () => {
-
-    if (score === null) {
-      return "Disha considers available safety signals for this route.";
-    }
-
-    if (score >= 80) {
-      return "This route has stronger available safety indicators.";
-    }
-
-    if (score >= 65) {
-      return "This route has a moderate safety profile.";
-    }
-
-    return "Disha found comparatively weaker safety indicators for this route.";
-  };
-
+  const signals =
+    route?.aiResearch?.recentSignals || [];
 
   return (
-    <div className="safer-explanation">
+    <div className="safer-route-explanation">
 
-      <div className="safer-header">
+      <div className="safer-route-explanation-header">
+
+        <div className="safer-route-check">
+          ✓
+        </div>
 
         <div>
-          <span className="safer-eyebrow">
-            DISHA SAFETY CHECK
+          <span className="safer-route-label">
+            DISHA SAFETY ANALYSIS
           </span>
 
           <h3>
-            Why this route?
+            {title}
           </h3>
         </div>
 
-
-        {score !== null && (
-          <div className="safety-score">
-            <strong>{score}</strong>
-            <span>/100</span>
-          </div>
-        )}
-
       </div>
 
-
-      <p className="safer-summary">
-        {route.assessment || getSummary()}
+      <p className="safer-route-description">
+        {description}
       </p>
 
+      {signals.length > 0 && (
+        <div className="safer-route-signals">
 
-      <div className="safety-factors">
+          <span>
+            Why this route?
+          </span>
 
-        {activityScore !== null && (
-          <div className="safety-factor">
-            <div className="factor-icon">
-              A
-            </div>
+          <ul>
+            {signals.map((signal, index) => (
+              <li key={index}>
+                <span>✓</span>
+                {signal}
+              </li>
+            ))}
+          </ul>
 
-            <div>
-              <strong>
-                Public activity
-              </strong>
+        </div>
+      )}
 
-              <span>
-                {activityScore}/100
-              </span>
-            </div>
-          </div>
-        )}
+      <div className="safer-route-score">
 
+        <div>
+          <span>Safety score</span>
 
-        {helpScore !== null && (
-          <div className="safety-factor">
-            <div className="factor-icon">
-              +
-            </div>
+          <strong>
+            {route?.safetyScore ?? "--"}
+            <small>/100</small>
+          </strong>
+        </div>
 
-            <div>
-              <strong>
-                Help availability
-              </strong>
-
-              <span>
-                {helpScore}/100
-              </span>
-            </div>
-          </div>
-        )}
-
-
-        {incidentScore !== null && (
-          <div className="safety-factor">
-            <div className="factor-icon">
-              !
-            </div>
-
-            <div>
-              <strong>
-                Safety signals
-              </strong>
-
-              <span>
-                {incidentScore}/100
-              </span>
-            </div>
-          </div>
-        )}
+        <div className="score-bar">
+          <div
+            style={{
+              width: `${Math.min(
+                100,
+                Math.max(
+                  0,
+                  Number(route?.safetyScore) || 0
+                )
+              )}%`,
+            }}
+          />
+        </div>
 
       </div>
 

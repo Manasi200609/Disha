@@ -1,84 +1,120 @@
-.safer-explanation {
-  margin-top: 14px;
-  padding: 17px;
-  background: #f8f3ee;
-  border: 1px solid #eadfd6;
-  border-radius: 17px;
+.safer-route-explanation {
+  margin: 12px 0 18px;
+  padding: 20px;
+  border: 1px solid rgba(112, 82, 67, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 250, 245, 0.8);
 }
 
-.safer-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 15px;
-}
-
-.safer-eyebrow {
-  display: block;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  color: #a85d47;
-}
-
-.safer-header h3 {
-  margin: 5px 0 0;
-  font-size: 18px;
-}
-
-.safety-score {
-  display: flex;
-  align-items: baseline;
-  gap: 2px;
-}
-
-.safety-score strong {
-  font-size: 24px;
-}
-
-.safety-score span {
-  color: #777;
-  font-size: 12px;
-}
-
-.safer-summary {
-  margin: 10px 0 15px;
-  color: #555;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.safety-factors {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-}
-
-.safety-factor {
+.safer-route-explanation-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-.factor-icon {
-  width: 30px;
-  height: 30px;
+.safer-route-check {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 9px;
-  background: white;
+  background: #6f4b3e;
+  color: white;
   font-weight: 700;
 }
 
-.safety-factor div:last-child {
+.safer-route-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  opacity: 0.55;
+  margin-bottom: 3px;
+}
+
+.safer-route-explanation h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.safer-route-description {
+  margin: 15px 0;
+  line-height: 1.6;
+  font-size: 14px;
+  opacity: 0.75;
+}
+
+.safer-route-signals > span {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.safer-route-signals ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.safer-route-signals li {
   display: flex;
-  flex: 1;
-  justify-content: space-between;
-  align-items: center;
+  gap: 8px;
+  margin: 7px 0;
   font-size: 13px;
 }
 
-.safety-factor span {
-  color: #777;
+.safer-route-signals li span {
+  font-weight: 700;
+}
+
+.safer-route-score {
+  margin-top: 18px;
+}
+
+.safer-route-score > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.safer-route-score span {
+  font-size: 12px;
+  opacity: 0.65;
+}
+
+.safer-route-score strong {
+  font-size: 20px;
+}
+
+.safer-route-score strong small {
+  font-size: 11px;
+  opacity: 0.5;
+  margin-left: 2px;
+}
+
+.score-bar {
+  height: 6px;
+  margin-top: 8px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.score-bar div {
+  height: 100%;
+  border-radius: inherit;
+  background: #6f4b3e;
+}
+
+/* DARK MODE */
+
+.dark .safer-route-explanation {
+  background: rgba(40, 34, 31, 0.9);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .score-bar {
+  background: rgba(255, 255, 255, 0.1);
 }

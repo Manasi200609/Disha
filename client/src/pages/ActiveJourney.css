@@ -1,1217 +1,561 @@
 /* =========================================================
-   ACTIVE JOURNEY
+   DISHA — ACTIVE JOURNEY
+   Full desktop page + responsive mobile layout
    ========================================================= */
 
 .active-journey-page {
-  --journey-bg: #f5ede3;
-  --journey-surface: #fffaf4;
-  --journey-surface-alt: #eee1d4;
-
-  --journey-text: #3a2927;
-  --journey-muted: #806e68;
-
-  --journey-terracotta: #b86650;
-  --journey-terracotta-dark: #934937;
-  --journey-terracotta-soft: #ead0c4;
-
-  --journey-border: rgba(58, 41, 39, 0.12);
-
-  --journey-safe: #47745b;
-  --journey-safe-soft: #dce9df;
-
-  --journey-danger: #d62828;
-  --journey-danger-dark: #a91f1f;
-
+  width: 100%;
   min-height: 100vh;
-  background: var(--journey-bg);
-  color: var(--journey-text);
-
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-
-  padding-bottom: 110px;
-
-  transition:
-    background-color 0.25s ease,
-    color 0.25s ease;
+  background: #eee2d6;
+  color: #211b1d;
+  overflow-x: hidden;
 }
 
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.active-journey-content {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 42px 0 70px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 /* =========================================================
    HEADER
    ========================================================= */
 
-.journey-header {
+.active-journey-header {
   width: 100%;
-  height: 68px;
+  max-width: 900px;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  gap: 22px;
 
-  padding: 0 18px;
-
-  background: var(--journey-surface);
-
-  border-bottom: 1px solid var(--journey-border);
-
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  margin-bottom: 26px;
 }
 
-.journey-back-button,
-.journey-theme-button {
-  width: 40px;
-  height: 40px;
+.journey-back-button {
+  width: 44px;
+  height: 44px;
 
-  border: 1px solid var(--journey-border);
+  flex-shrink: 0;
+
+  border: 0;
   border-radius: 50%;
 
-  background: var(--journey-bg);
-  color: var(--journey-text);
+  background: #211b1d;
+  color: #fff8f0;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 20px;
+  font-size: 22px;
+  line-height: 1;
 
   cursor: pointer;
 
-  transition: 0.2s ease;
-}
-
-.journey-back-button:hover,
-.journey-theme-button:hover {
-  background: var(--journey-terracotta-soft);
-}
-
-.journey-header-title {
-  flex: 1;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
-  gap: 9px;
+  transition: transform 0.2s ease,
+              background 0.2s ease;
 }
 
-.journey-header-title p {
-  margin: 0;
-
-  font-size: 10px;
-  font-weight: 800;
-
-  letter-spacing: 1.6px;
+.journey-back-button:hover {
+  transform: translateX(-3px);
+  background: #36292a;
 }
 
-.journey-header-title span:not(.journey-live-dot) {
+.journey-eyebrow {
   display: block;
 
-  margin-top: 2px;
+  margin-bottom: 4px;
 
-  color: var(--journey-muted);
+  color: #c87459;
 
   font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.journey-live-dot {
-  width: 9px;
-  height: 9px;
+.active-journey-header h1 {
+  margin: 0;
 
-  border-radius: 50%;
+  color: #211b1d;
 
-  background: var(--journey-safe);
-
-  box-shadow: 0 0 0 5px var(--journey-safe-soft);
-
-  animation: journeyPulse 2s infinite;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(54px, 7vw, 92px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -4px;
 }
 
-@keyframes journeyPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(71, 116, 91, 0.35);
-  }
-
-  70% {
-    box-shadow: 0 0 0 7px rgba(71, 116, 91, 0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(71, 116, 91, 0);
-  }
+.active-journey-header h1 em {
+  font-style: italic;
 }
-
 
 /* =========================================================
    MAP
    ========================================================= */
 
-.journey-map {
-  height: 300px;
-
+.journey-map-container {
   position: relative;
+
+  width: 100%;
+  max-width: 900px;
+
+  height: 480px;
+
   overflow: hidden;
 
-  background:
-    linear-gradient(
-      135deg,
-      #e8d9ca 0%,
-      #f2e8dc 45%,
-      #dfd0c1 100%
-    );
+  border-radius: 24px;
 
-  border-bottom: 1px solid var(--journey-border);
-}
-
-.map-grid {
-  position: absolute;
-  inset: 0;
-
-  opacity: 0.35;
-
-  background-image:
-    linear-gradient(
-      90deg,
-      transparent 95%,
-      rgba(92, 71, 63, 0.14) 96%
-    ),
-    linear-gradient(
-      transparent 95%,
-      rgba(92, 71, 63, 0.14) 96%
-    );
-
-  background-size: 55px 55px;
-}
-
-.map-road {
-  position: absolute;
-
-  background: rgba(255, 250, 244, 0.9);
-
-  border-radius: 100px;
-
-  transform-origin: center;
-}
-
-.road-one {
-  width: 130%;
-  height: 30px;
-
-  left: -20%;
-  top: 44%;
-
-  transform: rotate(-13deg);
-}
-
-.road-two {
-  width: 100%;
-  height: 22px;
-
-  left: 8%;
-  top: 70%;
-
-  transform: rotate(31deg);
-}
-
-.road-three {
-  width: 110%;
-  height: 18px;
-
-  left: -10%;
-  top: 15%;
-
-  transform: rotate(22deg);
-}
-
-
-/* Route */
-
-.journey-route-line {
-  position: absolute;
-
-  width: 4px;
-  height: 165px;
-
-  left: 52%;
-  top: 22%;
-
-  background: var(--journey-terracotta);
-
-  border-radius: 10px;
-
-  transform: rotate(25deg);
+  background: #d8cec4;
 
   box-shadow:
-    0 0 0 2px rgba(184, 102, 80, 0.12);
+    0 18px 45px rgba(46, 34, 29, 0.12);
 }
 
+.journey-map-container > * {
+  max-width: 100%;
+}
 
-/* Map markers */
+.journey-map-container .map-view,
+.journey-map-container .map-container {
+  width: 100%;
+  height: 100%;
+}
 
-.map-marker {
+/* Live location label */
+
+.journey-location-indicator {
   position: absolute;
 
-  width: 30px;
-  height: 30px;
-
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  z-index: 5;
-}
-
-.start-marker {
-  left: 31%;
-  top: 25%;
-
-  background: var(--journey-surface);
-
-  border: 3px solid var(--journey-terracotta);
-}
-
-.start-marker span {
-  width: 7px;
-  height: 7px;
-
-  background: var(--journey-terracotta);
-
-  border-radius: 50%;
-}
-
-.destination-marker {
-  right: 25%;
-  bottom: 18%;
-
-  background: var(--journey-terracotta);
-
-  color: white;
-
-  border: 4px solid rgba(255, 250, 244, 0.8);
-
-  box-shadow: 0 4px 15px rgba(93, 53, 44, 0.25);
-}
-
-.destination-marker span {
-  font-size: 10px;
-}
-
-
-/* Current location */
-
-.map-current-location {
-  position: absolute;
-
-  left: 52%;
-  top: 50%;
-
-  width: 22px;
-  height: 22px;
-
-  transform: translate(-50%, -50%);
-
-  z-index: 10;
-}
-
-.current-location-pulse {
-  position: absolute;
-  inset: -9px;
-
-  background: rgba(184, 102, 80, 0.2);
-
-  border-radius: 50%;
-
-  animation: locationPulse 2s infinite;
-}
-
-.current-location-dot {
-  position: absolute;
-
-  inset: 4px;
-
-  border-radius: 50%;
-
-  background: var(--journey-terracotta);
-
-  border: 3px solid white;
-}
-
-@keyframes locationPulse {
-  0% {
-    transform: scale(0.7);
-    opacity: 0.8;
-  }
-
-  70% {
-    transform: scale(1.3);
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-}
-
-
-/* Current location label */
-
-.current-location-label {
-  position: absolute;
-
-  left: 52%;
-  top: 58%;
-
-  transform: translateX(-50%);
-
-  background: var(--journey-surface);
-
-  padding: 7px 11px;
-
-  border-radius: 8px;
-
-  box-shadow: 0 5px 18px rgba(61, 42, 36, 0.12);
-
-  display: flex;
-  flex-direction: column;
-
-  text-align: center;
+  left: 20px;
+  bottom: 18px;
 
   z-index: 20;
-}
-
-.current-location-label span {
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: 1px;
-
-  color: var(--journey-terracotta);
-}
-
-.current-location-label strong {
-  margin-top: 2px;
-
-  font-size: 10px;
-}
-
-
-/* Map controls */
-
-.map-controls {
-  position: absolute;
-
-  right: 14px;
-  bottom: 14px;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 6px;
-
-  z-index: 30;
-}
-
-.map-controls button {
-  width: 36px;
-  height: 36px;
-
-  border: 1px solid var(--journey-border);
-  border-radius: 9px;
-
-  background: var(--journey-surface);
-
-  color: var(--journey-text);
-
-  font-size: 19px;
-
-  cursor: pointer;
-}
-
-
-/* =========================================================
-   CONTENT
-   ========================================================= */
-
-.journey-content {
-  width: min(100% - 28px, 560px);
-
-  margin: 0 auto;
-
-  padding-top: 18px;
-}
-
-
-/* =========================================================
-   SAFETY CARD
-   ========================================================= */
-
-.journey-safety-card {
-  padding: 16px;
-
-  border-radius: 17px;
-
-  background: var(--journey-safe-soft);
-
-  border: 1px solid rgba(71, 116, 91, 0.15);
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 9px;
 
-  gap: 12px;
+  padding: 9px 14px;
 
-  transition: 0.25s ease;
-}
+  border-radius: 999px;
 
-.safety-card-left {
-  display: flex;
-  align-items: center;
+  background: rgba(33, 27, 29, 0.92);
+  color: #fff8f0;
 
-  gap: 12px;
-}
-
-.safety-icon {
-  width: 42px;
-  height: 42px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: var(--journey-safe);
-
-  color: white;
-
-  font-size: 18px;
-  font-weight: 800;
-}
-
-.safety-small-label {
-  display: block;
-
-  color: var(--journey-safe);
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: 1.2px;
-}
-
-.journey-safety-card h2 {
-  margin: 4px 0 2px;
-
-  font-size: 15px;
-  line-height: 1.2;
-}
-
-.journey-safety-card p {
-  margin: 0;
-
-  color: var(--journey-muted);
-
-  font-size: 11px;
-}
-
-.safety-score {
-  text-align: right;
-
-  flex-shrink: 0;
-}
-
-.safety-score strong {
-  font-size: 22px;
-  line-height: 1;
-}
-
-.safety-score span {
-  color: var(--journey-muted);
-
-  font-size: 9px;
-}
-
-
-/* Unsafe */
-
-.journey-safety-card.unsafe {
-  background: #f7dede;
-
-  border-color: rgba(214, 40, 40, 0.2);
-}
-
-.journey-safety-card.unsafe .safety-icon {
-  background: var(--journey-danger);
-}
-
-.journey-safety-card.unsafe .safety-small-label {
-  color: var(--journey-danger);
-}
-
-
-/* =========================================================
-   DESTINATION
-   ========================================================= */
-
-.journey-destination-card {
-  margin-top: 12px;
-
-  padding: 18px;
-
-  background: var(--journey-surface);
-
-  border: 1px solid var(--journey-border);
-
-  border-radius: 17px;
-}
-
-.destination-top {
-  display: flex;
-  justify-content: space-between;
-
-  gap: 15px;
-}
-
-.section-label {
-  color: var(--journey-muted);
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: 1.2px;
-}
-
-.destination-top h1 {
-  margin: 5px 0 0;
-
-  max-width: 235px;
-
-  font-size: 17px;
-  line-height: 1.25;
-}
-
-.destination-status {
-  height: fit-content;
-
-  padding: 6px 9px;
-
-  border-radius: 20px;
-
-  background: var(--journey-safe-soft);
-
-  color: var(--journey-safe);
-
-  font-size: 9px;
-  font-weight: 700;
-
-  white-space: nowrap;
-}
-
-.destination-status span,
-.sharing-indicator span {
-  display: inline-block;
-
-  width: 6px;
-  height: 6px;
-
-  margin-right: 4px;
-
-  border-radius: 50%;
-
-  background: currentColor;
-}
-
-.journey-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  margin-top: 20px;
-
-  padding-top: 15px;
-
-  border-top: 1px solid var(--journey-border);
-}
-
-.journey-stat {
-  display: flex;
-  flex-direction: column;
-
-  gap: 4px;
-}
-
-.journey-stat:not(:first-child) {
-  padding-left: 12px;
-
-  border-left: 1px solid var(--journey-border);
-}
-
-.journey-stat span {
-  color: var(--journey-muted);
-
-  font-size: 8px;
-  font-weight: 700;
-
-  letter-spacing: 0.8px;
-}
-
-.journey-stat strong {
   font-size: 13px;
+  font-weight: 600;
+
+  backdrop-filter: blur(8px);
 }
 
+.journey-location-indicator span {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #67b889;
+
+  box-shadow: 0 0 0 4px rgba(103, 184, 137, 0.16);
+}
 
 /* =========================================================
-   AI CARD
+   DESTINATION + ETA
    ========================================================= */
 
-.ai-journey-card {
-  margin-top: 12px;
-
-  padding: 17px;
-
-  border-radius: 17px;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--journey-terracotta-dark),
-      var(--journey-terracotta)
-    );
-
-  color: #fff8f2;
-
-  box-shadow: 0 10px 25px rgba(147, 73, 55, 0.14);
-}
-
-.ai-card-heading {
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-}
-
-.ai-symbol {
-  width: 34px;
-  height: 34px;
-
-  border-radius: 10px;
-
-  background: rgba(255, 255, 255, 0.17);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-weight: 900;
-}
-
-.ai-card-heading span {
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: 1.2px;
-
-  opacity: 0.75;
-}
-
-.ai-card-heading h3 {
-  margin: 2px 0 0;
-
-  font-size: 14px;
-}
-
-.ai-journey-card > p {
-  margin: 13px 0;
-
-  font-size: 11px;
-  line-height: 1.55;
-
-  color: rgba(255, 248, 242, 0.86);
-}
-
-.ai-details-button {
+.journey-info {
   width: 100%;
+  max-width: 900px;
 
-  padding: 10px 0;
-
-  border: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-
-  background: transparent;
-
-  color: white;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  font-size: 10px;
-  font-weight: 700;
-
-  cursor: pointer;
-}
-
-
-/* =========================================================
-   CHECK-IN
-   ========================================================= */
-
-.checkin-section {
-  margin-top: 18px;
-}
-
-.checkin-copy h3 {
-  margin: 5px 0 3px;
-
-  font-size: 15px;
-}
-
-.checkin-copy p {
-  margin: 0;
-
-  color: var(--journey-muted);
-
-  font-size: 11px;
-}
-
-.checkin-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 180px;
+  gap: 16px;
 
-  gap: 9px;
-
-  margin-top: 12px;
-}
-
-.checkin-actions button {
-  min-height: 48px;
-
-  border-radius: 12px;
-
-  font-size: 11px;
-  font-weight: 700;
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-.checkin-safe-button {
-  border: 1px solid rgba(71, 116, 91, 0.2);
-
-  background: var(--journey-safe-soft);
-
-  color: var(--journey-safe);
-}
-
-.checkin-safe-button span {
-  margin-right: 5px;
-}
-
-.checkin-unsafe-button {
-  border: 1px solid rgba(214, 40, 40, 0.2);
-
-  background: transparent;
-
-  color: var(--journey-danger);
-}
-
-.checkin-actions button:active {
-  transform: scale(0.97);
-}
-
-
-/* =========================================================
-   TRUSTED CONTACT
-   ========================================================= */
-
-.trusted-contact-mini {
   margin-top: 18px;
-
-  padding: 13px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-
-  background: var(--journey-surface);
-
-  border: 1px solid var(--journey-border);
-
-  border-radius: 14px;
 }
 
-.trusted-contact-icon {
-  width: 37px;
-  height: 37px;
+.journey-destination,
+.journey-time {
+  min-height: 82px;
 
-  flex-shrink: 0;
+  padding: 18px 22px;
 
-  border-radius: 10px;
+  border-radius: 18px;
 
-  background: var(--journey-terracotta-soft);
+  background: #342526;
 
-  color: var(--journey-terracotta-dark);
+  color: #fff8f0;
 
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
 }
 
-.trusted-contact-info {
-  flex: 1;
-}
+.journey-destination span,
+.journey-time span {
+  margin-bottom: 7px;
 
-.trusted-contact-info span {
-  display: block;
-
-  color: var(--journey-muted);
-
-  font-size: 7px;
-  font-weight: 800;
-
-  letter-spacing: 1px;
-}
-
-.trusted-contact-info strong {
-  display: block;
-
-  margin-top: 2px;
-
-  font-size: 12px;
-}
-
-.trusted-contact-info p {
-  margin: 1px 0 0;
-
-  color: var(--journey-muted);
+  color: #d18a6d;
 
   font-size: 9px;
-}
-
-.sharing-indicator {
-  color: var(--journey-safe);
-
-  font-size: 8px;
-  font-weight: 800;
-}
-
-
-/* =========================================================
-   END JOURNEY
-   ========================================================= */
-
-.end-journey-button {
-  display: block;
-
-  margin: 18px auto 0;
-
-  border: 0;
-
-  background: transparent;
-
-  color: var(--journey-muted);
-
-  font-size: 10px;
   font-weight: 700;
-
-  text-decoration: underline;
-  text-underline-offset: 3px;
-
-  cursor: pointer;
-}
-
-
-/* =========================================================
-   EMERGENCY BUTTON
-   ========================================================= */
-
-.emergency-floating-button {
-  position: fixed;
-
-  bottom: 18px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  z-index: 200;
-
-  height: 52px;
-
-  padding: 0 21px 0 10px;
-
-  border: 0;
-  border-radius: 30px;
-
-  background: var(--journey-danger);
-
-  color: white;
-
-  display: flex;
-  align-items: center;
-
-  gap: 9px;
-
-  font-size: 10px;
-  font-weight: 900;
-
-  letter-spacing: 1px;
-
-  box-shadow:
-    0 8px 25px rgba(214, 40, 40, 0.3),
-    0 0 0 4px rgba(214, 40, 40, 0.08);
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-.emergency-floating-button:hover {
-  background: var(--journey-danger-dark);
-}
-
-.emergency-floating-button:active {
-  transform: translateX(-50%) scale(0.96);
-}
-
-.emergency-icon {
-  width: 34px;
-  height: 34px;
-
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(255, 255, 255, 0.2);
-
-  font-size: 18px;
-}
-
-
-/* =========================================================
-   CHECK-IN MODAL
-   ========================================================= */
-
-.checkin-modal-overlay {
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 500;
-
-  padding: 20px;
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-
-  background: rgba(25, 18, 17, 0.62);
-
-  backdrop-filter: blur(4px);
-}
-
-.checkin-modal {
-  width: min(100%, 420px);
-
-  padding: 25px 20px 22px;
-
-  position: relative;
-
-  background: var(--journey-surface);
-
-  border-radius: 23px 23px 15px 15px;
-
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.18);
-
-  text-align: center;
-}
-
-.modal-close {
-  position: absolute;
-
-  right: 15px;
-  top: 13px;
-
-  width: 30px;
-  height: 30px;
-
-  border: 0;
-  border-radius: 50%;
-
-  background: var(--journey-bg);
-
-  color: var(--journey-muted);
-
-  font-size: 20px;
-
-  cursor: pointer;
-}
-
-.modal-warning-icon {
-  width: 50px;
-  height: 50px;
-
-  margin: 0 auto 12px;
-
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #f7dede;
-
-  color: var(--journey-danger);
-
-  font-size: 22px;
-  font-weight: 900;
-}
-
-.modal-eyebrow {
-  color: var(--journey-danger);
-
-  font-size: 8px;
-  font-weight: 900;
-
   letter-spacing: 1.5px;
 }
 
-.checkin-modal h2 {
-  margin: 6px 0;
+.journey-destination strong,
+.journey-time strong {
+  color: #fff8f0;
 
-  font-size: 22px;
+  font-size: 16px;
+  font-weight: 600;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.checkin-modal p {
-  margin: 0 auto 18px;
-
-  max-width: 300px;
-
-  color: var(--journey-muted);
-
-  font-size: 11px;
-  line-height: 1.6;
+.journey-time {
+  background: #211b1d;
 }
 
-.modal-safe-button,
-.modal-help-button {
+.journey-time strong {
+  font-size: 23px;
+}
+
+/* =========================================================
+   JOURNEY STATUS
+   ========================================================= */
+
+.journey-status,
+.journey-status-card,
+.status-card {
   width: 100%;
+  max-width: 900px;
 
-  height: 46px;
+  margin-top: 18px;
 
-  margin-top: 8px;
+  box-sizing: border-box;
+}
 
-  border-radius: 12px;
+/* If JourneyStatus has its own card */
+.journey-status-card {
+  padding: 26px;
 
-  font-size: 11px;
-  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+
+  background: #211b1d;
+  color: #fff8f0;
+
+  box-shadow:
+    0 15px 35px rgba(33, 27, 29, 0.14);
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.journey-error {
+  width: 100%;
+  max-width: 900px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+
+  margin-top: 18px;
+  padding: 17px 20px;
+
+  border: 1px solid rgba(192, 82, 69, 0.18);
+  border-radius: 16px;
+
+  background: #f4d8cf;
+  color: #8d4439;
+}
+
+.journey-error span {
+  width: 25px;
+  height: 25px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #c94d42;
+  color: white;
+
+  font-weight: 700;
+}
+
+.journey-error p {
+  margin: 2px 0 0;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.journey-actions {
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  gap: 12px;
+
+  margin-top: 20px;
+}
+
+.start-journey-button,
+.check-in-button,
+.end-journey-button {
+  min-height: 54px;
+
+  border: 0;
+  border-radius: 15px;
+
+  padding: 0 22px;
+
+  font-size: 14px;
+  font-weight: 700;
 
   cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
-.modal-safe-button {
-  border: 0;
+.start-journey-button {
+  flex: 1;
 
-  background: var(--journey-safe);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
+  background: #c87459;
   color: white;
 }
 
-.modal-help-button {
-  border: 1px solid rgba(214, 40, 40, 0.25);
-
-  background: transparent;
-
-  color: var(--journey-danger);
+.start-journey-button span {
+  font-size: 20px;
 }
 
+.start-journey-button:hover,
+.check-in-button:hover,
+.end-journey-button:hover {
+  transform: translateY(-2px);
+}
+
+.start-journey-button:hover {
+  box-shadow: 0 10px 25px rgba(200, 116, 89, 0.25);
+}
+
+.start-journey-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.check-in-button {
+  flex: 1;
+
+  background: #79a982;
+  color: white;
+}
+
+.end-journey-button {
+  background: #342526;
+  color: #fff8f0;
+}
 
 /* =========================================================
-   DARK MODE
+   EMERGENCY
    ========================================================= */
 
-[data-theme="dark"] .active-journey-page {
-  --journey-bg: #171315;
-  --journey-surface: #211b1d;
-  --journey-surface-alt: #2b2224;
+.journey-emergency {
+  width: 100%;
+  max-width: 900px;
 
-  --journey-text: #f4e9df;
-  --journey-muted: #b8a69e;
-
-  --journey-terracotta: #c8755d;
-  --journey-terracotta-dark: #a65440;
-  --journey-terracotta-soft: #382522;
-
-  --journey-border: rgba(244, 233, 223, 0.1);
-
-  --journey-safe: #72a47f;
-  --journey-safe-soft: #233229;
+  margin-top: 18px;
 }
 
-[data-theme="dark"] .journey-map {
-  background:
-    linear-gradient(
-      135deg,
-      #2b2424 0%,
-      #211c1d 50%,
-      #302527 100%
-    );
+/* Make the EmergencyButton fill the page width */
+.journey-emergency > * {
+  width: 100%;
 }
-
-[data-theme="dark"] .map-grid {
-  opacity: 0.2;
-}
-
-[data-theme="dark"] .map-road {
-  background: rgba(244, 233, 223, 0.09);
-}
-
-[data-theme="dark"] .current-location-dot {
-  border-color: #211b1d;
-}
-
-[data-theme="dark"] .journey-safety-card.unsafe {
-  background: #3b2020;
-}
-
-[data-theme="dark"] .checkin-modal-overlay {
-  background: rgba(0, 0, 0, 0.75);
-}
-
-[data-theme="dark"] .modal-warning-icon {
-  background: #3b2020;
-}
-
 
 /* =========================================================
-   LARGER MOBILE / TABLET
+   LOADING
    ========================================================= */
 
-@media (min-width: 600px) {
-  .journey-map {
+.journey-loading {
+  min-height: calc(100vh - 90px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  color: #211b1d;
+}
+
+.journey-spinner {
+  width: 34px;
+  height: 34px;
+
+  border: 3px solid rgba(33, 27, 29, 0.15);
+  border-top-color: #c87459;
+
+  border-radius: 50%;
+
+  animation: journey-spin 0.8s linear infinite;
+}
+
+@keyframes journey-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .active-journey-content {
+    width: min(720px, calc(100% - 32px));
+    padding-top: 32px;
+  }
+
+  .journey-map-container {
+    height: 430px;
+  }
+
+  .active-journey-header h1 {
+    font-size: 68px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .active-journey-content {
+    width: calc(100% - 28px);
+
+    padding:
+      24px 0
+      50px;
+  }
+
+  .active-journey-header {
+    gap: 13px;
+    margin-bottom: 18px;
+  }
+
+  .journey-back-button {
+    width: 38px;
+    height: 38px;
+
+    font-size: 18px;
+  }
+
+  .journey-eyebrow {
+    font-size: 9px;
+    letter-spacing: 1.4px;
+  }
+
+  .active-journey-header h1 {
+    font-size: 48px;
+    letter-spacing: -2px;
+  }
+
+  .journey-map-container {
+    height: 390px;
+    border-radius: 18px;
+  }
+
+  .journey-location-indicator {
+    left: 12px;
+    bottom: 12px;
+
+    font-size: 11px;
+  }
+
+  .journey-info {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .journey-destination,
+  .journey-time {
+    min-height: 70px;
+
+    padding: 15px 17px;
+
+    border-radius: 15px;
+  }
+
+  .journey-time strong {
+    font-size: 19px;
+  }
+
+  .journey-status-card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .journey-actions {
+    flex-direction: column;
+  }
+
+  .start-journey-button,
+  .check-in-button,
+  .end-journey-button {
+    width: 100%;
+  }
+
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+  .active-journey-content {
+    width: calc(100% - 20px);
+  }
+
+  .active-journey-header h1 {
+    font-size: 42px;
+  }
+
+  .journey-map-container {
     height: 350px;
-  }
-
-  .journey-content {
-    padding-top: 22px;
-  }
-
-  .checkin-modal-overlay {
-    align-items: center;
-  }
-
-  .checkin-modal {
-    border-radius: 23px;
   }
 }

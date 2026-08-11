@@ -1,555 +1,404 @@
-/* =========================================================
-   DISHA JOURNEY STATUS
-   ========================================================= */
+/* ============================================================
+   JOURNEY STATUS
+============================================================ */
 
 .journey-status {
-  --journey-bg: #fffaf4;
-  --journey-text: #3a2927;
-  --journey-muted: #806e68;
-
-  --journey-terracotta: #b86650;
-  --journey-terracotta-dark: #934937;
-  --journey-terracotta-soft: #ead0c4;
-
-  --journey-border: rgba(58, 41, 39, 0.11);
-
-  --journey-safe: #47745b;
-  --journey-safe-soft: #dce9df;
-
-  --journey-warning: #a66a35;
-  --journey-warning-soft: #f0dfc9;
-
-  --journey-danger: #d62828;
-
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
-  padding: 16px;
 
-  background: var(--journey-bg);
+/* ============================================================
+   TOP GRID
+============================================================ */
 
-  color: var(--journey-text);
+.journey-top-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 168px;
+  gap: 14px;
+}
 
-  border: 1px solid var(--journey-border);
 
+/* ============================================================
+   DESTINATION CARD
+============================================================ */
+
+.destination-card,
+.eta-card {
+  background: #352424;
   border-radius: 18px;
 
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-}
-
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-.journey-status-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-
-  gap: 12px;
-}
-
-.journey-status-indicator {
-  display: flex;
-  align-items: flex-start;
-
-  gap: 9px;
-
-  min-width: 0;
-}
-
-.journey-status-pulse {
-  width: 9px;
-  height: 9px;
-
-  flex-shrink: 0;
-
-  margin-top: 3px;
-
-  border-radius: 50%;
-
-  background: var(--journey-safe);
-
-  box-shadow:
-    0 0 0 4px var(--journey-safe-soft);
-
-  animation: journeyPulse 2s infinite;
-}
-
-.journey-status-pulse.checkin {
-  background: var(--journey-warning);
-
-  box-shadow:
-    0 0 0 4px var(--journey-warning-soft);
-
-  animation: checkinPulse 1.4s infinite;
-}
-
-.journey-status-pulse.completed {
-  background: var(--journey-safe);
-
-  animation: none;
-}
-
-.journey-status-pulse.paused {
-  background: var(--journey-muted);
-
-  box-shadow: none;
-
-  animation: none;
-}
-
-@keyframes journeyPulse {
-  0% {
-    box-shadow:
-      0 0 0 3px rgba(71, 116, 91, 0.18);
-  }
-
-  70% {
-    box-shadow:
-      0 0 0 7px rgba(71, 116, 91, 0);
-  }
-
-  100% {
-    box-shadow:
-      0 0 0 3px rgba(71, 116, 91, 0.18);
-  }
-}
-
-@keyframes checkinPulse {
-  0% {
-    box-shadow:
-      0 0 0 3px rgba(166, 106, 53, 0.2);
-  }
-
-  70% {
-    box-shadow:
-      0 0 0 8px rgba(166, 106, 53, 0);
-  }
-
-  100% {
-    box-shadow:
-      0 0 0 3px rgba(166, 106, 53, 0.2);
-  }
-}
-
-
-/* =========================================================
-   STATUS TEXT
-   ========================================================= */
-
-.journey-status-label {
-  display: block;
-
-  font-size: 12px;
-  font-weight: 850;
-
-  line-height: 1.2;
-}
-
-.journey-status-indicator p {
-  margin: 4px 0 0;
-
-  color: var(--journey-muted);
-
-  font-size: 8px;
-
-  line-height: 1.4;
-}
-
-
-/* =========================================================
-   MINI SAFETY SCORE
-   ========================================================= */
-
-.journey-mini-score {
-  min-width: 47px;
-
-  text-align: right;
-}
-
-.journey-mini-score span {
-  display: block;
-
-  color: var(--journey-muted);
-
-  font-size: 5px;
-  font-weight: 900;
-
-  letter-spacing: 0.8px;
-}
-
-.journey-mini-score strong {
-  display: block;
-
-  margin-top: 2px;
-
-  color: var(--journey-safe);
-
-  font-size: 18px;
-  font-weight: 900;
-
-  line-height: 1;
-}
-
-
-/* =========================================================
-   DESTINATION
-   ========================================================= */
-
-.journey-destination {
-  margin-top: 15px;
-
-  padding: 11px;
+  min-height: 88px;
 
   display: flex;
-  align-items: center;
-
-  gap: 9px;
-
-  background: var(--journey-terracotta-soft);
-
-  border-radius: 11px;
-}
-
-.journey-destination-icon {
-  width: 27px;
-  height: 27px;
-
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
 
-  border-radius: 50%;
+  padding: 18px 24px;
 
-  background: var(--journey-terracotta);
-
-  color: white;
-
-  font-size: 7px;
+  box-sizing: border-box;
 }
 
-.journey-destination div:last-child {
-  min-width: 0;
+
+.destination-card {
+  align-items: center;
+  text-align: center;
 }
 
-.journey-destination span {
-  display: block;
 
-  color: var(--journey-terracotta-dark);
-
-  font-size: 5px;
-  font-weight: 900;
-
-  letter-spacing: 0.8px;
+.eta-card {
+  align-items: flex-start;
 }
 
-.journey-destination strong {
-  display: block;
 
-  margin-top: 3px;
+.card-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+
+  color: #d17a5d;
+
+  margin-bottom: 10px;
+}
+
+
+.destination-card strong {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+
+  max-width: 90%;
 
   overflow: hidden;
-
-  color: var(--journey-text);
-
-  font-size: 10px;
-
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 
-/* =========================================================
-   JOURNEY STATS
-   ========================================================= */
-
-.journey-stats {
-  margin-top: 14px;
-
-  display: grid;
-
-  grid-template-columns: 1fr auto 1fr auto 1fr;
-
-  align-items: center;
+.eta-card strong {
+  color: #fff;
+  font-size: 17px;
 }
 
-.journey-stat {
+
+/* ============================================================
+   MAIN JOURNEY CARD
+============================================================ */
+
+.journey-main-card {
+  width: 100%;
+
+  background: #1f1a1b;
+
+  border-radius: 20px;
+
+  padding: 18px;
+
+  box-sizing: border-box;
+
+  color: #fff;
+}
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.journey-card-header {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-start;
 
-  gap: 6px;
-
-  min-width: 0;
+  margin-bottom: 14px;
 }
 
-.journey-stat-icon {
-  width: 22px;
-  height: 22px;
+
+.journey-active-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+
+  margin-top: 5px;
+
+  border-radius: 50%;
 
   flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 7px;
-
-  background: rgba(128, 110, 104, 0.08);
-
-  color: var(--journey-terracotta-dark);
-
-  font-size: 10px;
 }
 
-.journey-stat div {
-  min-width: 0;
+
+.status-dot.active {
+  background: #72b88a;
+
+  box-shadow:
+    0 0 0 3px rgba(114, 184, 138, 0.08);
 }
 
-.journey-stat small {
+
+.status-dot.inactive {
+  background: #888;
+}
+
+
+.journey-active-info strong {
   display: block;
 
-  color: var(--journey-muted);
-
-  font-size: 6px;
+  font-size: 13px;
+  line-height: 1.2;
 }
 
-.journey-stat strong {
+
+.journey-active-info small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #a79b98;
+
+  font-size: 8px;
+}
+
+
+/* ============================================================
+   SAFETY
+============================================================ */
+
+.safety-score {
+  text-align: right;
+}
+
+
+.safety-score span {
+  display: block;
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  color: #d17a5d;
+}
+
+
+.safety-score strong {
   display: block;
 
   margin-top: 2px;
 
-  color: var(--journey-text);
+  font-size: 19px;
 
-  font-size: 8px;
-  font-weight: 800;
-}
-
-.journey-stat-divider {
-  width: 1px;
-  height: 24px;
-
-  background: var(--journey-border);
+  color: #72b88a;
 }
 
 
-/* =========================================================
-   MONITORING MESSAGE
-   ========================================================= */
+/* ============================================================
+   HEADING CARD
+============================================================ */
 
-.journey-monitoring-message {
-  margin-top: 14px;
-
-  padding: 9px 10px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 8px;
-
-  background: rgba(71, 116, 91, 0.07);
-
-  border: 1px solid rgba(71, 116, 91, 0.1);
-
-  border-radius: 10px;
-}
-
-.monitoring-icon {
-  width: 21px;
-  height: 21px;
-
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 7px;
-
-  background: var(--journey-safe-soft);
-
-  color: var(--journey-safe);
-
-  font-size: 9px;
-}
-
-.journey-monitoring-message p {
-  margin: 0;
-
-  color: var(--journey-muted);
-
-  font-size: 8px;
-
-  line-height: 1.4;
-}
-
-
-/* =========================================================
-   CHECK-IN STATE
-   ========================================================= */
-
-.journey-checkin-button {
+.heading-card {
   width: 100%;
 
-  height: 43px;
+  min-height: 78px;
 
-  margin-top: 14px;
+  background: #352424;
 
-  padding: 0 13px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  border: 0;
-
-  border-radius: 11px;
-
-  background: var(--journey-warning);
-
-  color: white;
-
-  font-size: 10px;
-  font-weight: 850;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 5px 14px rgba(166, 106, 53, 0.18);
-
-  transition:
-    transform 0.15s ease,
-    filter 0.15s ease;
-}
-
-.journey-checkin-button:hover {
-  filter: brightness(0.96);
-}
-
-.journey-checkin-button:active {
-  transform: scale(0.98);
-}
-
-.journey-checkin-button span:last-child {
-  width: 23px;
-  height: 23px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 7px;
-
-  background: rgba(255, 255, 255, 0.18);
-
-  font-size: 12px;
-}
-
-
-/* =========================================================
-   COMPLETED
-   ========================================================= */
-
-.journey-completed-message {
-  margin-top: 14px;
-
-  padding: 10px;
+  border-radius: 16px;
 
   display: flex;
   align-items: center;
 
-  gap: 8px;
+  gap: 14px;
 
-  border-radius: 10px;
+  padding: 15px 20px;
 
-  background: var(--journey-safe-soft);
-
-  color: var(--journey-safe);
+  box-sizing: border-box;
 }
 
-.journey-completed-message > span {
-  width: 21px;
-  height: 21px;
 
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.heading-icon {
+  width: 34px;
+  height: 34px;
 
   border-radius: 50%;
 
-  background: var(--journey-safe);
+  background: #d17a5d;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   color: white;
 
-  font-size: 9px;
-  font-weight: 900;
+  font-size: 17px;
+
+  flex-shrink: 0;
 }
 
-.journey-completed-message p {
-  margin: 0;
 
-  font-size: 8px;
+.heading-card span {
+  display: block;
+
+  color: #d17a5d;
+
+  font-size: 7px;
   font-weight: 700;
+
+  letter-spacing: 1.4px;
+
+  margin-bottom: 6px;
 }
 
 
-/* =========================================================
-   DARK MODE
-   ========================================================= */
+.heading-card strong {
+  display: block;
 
-[data-theme="dark"] .journey-status {
-  --journey-bg: #211b1d;
-  --journey-text: #f4e9df;
-  --journey-muted: #b8a69e;
+  color: white;
 
-  --journey-terracotta: #c8755d;
-  --journey-terracotta-dark: #a65440;
-  --journey-terracotta-soft: #382522;
-
-  --journey-border: rgba(244, 233, 223, 0.1);
-
-  --journey-safe: #72a47f;
-  --journey-safe-soft: #233229;
-
-  --journey-warning: #d29359;
-  --journey-warning-soft: #3b2c20;
-}
-
-[data-theme="dark"] .journey-monitoring-message {
-  background: rgba(114, 164, 127, 0.07);
-
-  border-color: rgba(114, 164, 127, 0.12);
+  font-size: 13px;
 }
 
 
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
+/* ============================================================
+   STATS
+============================================================ */
 
-@media (max-width: 360px) {
-  .journey-status {
-    padding: 13px;
+.journey-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  margin-top: 14px;
+
+  padding-top: 12px;
+
+  border-top: 1px solid rgba(
+    255,
+    255,
+    255,
+    0.08
+  );
+}
+
+
+.journey-stat {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 5px 10px;
+}
+
+
+.journey-stat + .journey-stat {
+  border-left: 1px solid rgba(
+    255,
+    255,
+    255,
+    0.1
+  );
+}
+
+
+.stat-icon {
+  width: 24px;
+  height: 24px;
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #282123;
+
+  color: #d17a5d;
+
+  font-size: 10px;
+
+  flex-shrink: 0;
+}
+
+
+.journey-stat small {
+  display: block;
+
+  color: #8f8583;
+
+  font-size: 7px;
+
+  margin-bottom: 3px;
+}
+
+
+.journey-stat strong {
+  display: block;
+
+  color: #fff;
+
+  font-size: 9px;
+}
+
+
+.monitoring-on {
+  color: #72b88a !important;
+}
+
+
+.monitoring-off {
+  color: #a79b98 !important;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 700px) {
+
+  .journey-top-grid {
+    grid-template-columns: 1fr;
   }
+
+
+  .eta-card {
+    min-height: 60px;
+  }
+
+
+  .journey-stats {
+    grid-template-columns: 1fr;
+  }
+
 
   .journey-stat {
-    gap: 4px;
+    justify-content: flex-start;
+
+    padding: 10px 0;
   }
 
-  .journey-stat-icon {
-    display: none;
+
+  .journey-stat + .journey-stat {
+    border-left: none;
+
+    border-top: 1px solid rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
   }
 
-  .journey-stat strong {
-    font-size: 7px;
-  }
 }

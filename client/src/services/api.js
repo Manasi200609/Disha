@@ -1,178 +1,99 @@
+// ============================================================
+// DISHA API SERVICE
+// ============================================================
+
 const API_BASE =
   import.meta.env.VITE_API_URL ||
   "http://localhost:5000";
-
 
 // ============================================================
 // COMMON REQUEST
 // ============================================================
 
-async function request(
-  endpoint,
-  options = {}
-) {
+async function request(endpoint, options = {}) {
+  const response = await fetch(`${API_BASE}${endpoint}`, {
+    headers: {
+      "Content-Type": "application/json",
+      ...(options.headers || {}),
+    },
+    ...options,
+  });
 
-  const response = await fetch(
-    `${API_BASE}${endpoint}`,
-    {
-      ...options,
+  let data;
 
-      headers: {
-        "Content-Type": "application/json",
-        ...(options.headers || {})
-      }
-    }
-  );
-
-
-  const contentType =
-    response.headers.get(
-      "content-type"
-    );
-
-
-  const data =
-    contentType?.includes("application/json")
-      ? await response.json()
-      : await response.text();
-
-
-  if (!response.ok) {
-
-    const message =
-      typeof data === "object"
-        ? data.message
-        : data;
-
-    throw new Error(
-      message ||
-      `Request failed: ${response.status}`
-    );
-
+  try {
+    data = await response.json();
+  } catch {
+    data = {};
   }
 
+  if (!response.ok) {
+    throw new Error(
+      data?.message ||
+      `Request failed with status ${response.status}`
+    );
+  }
 
   return data;
 }
-
 
 // ============================================================
 // GET
 // ============================================================
 
-export function apiGet(
-  endpoint
-) {
-
-  return request(
-    endpoint,
-    {
-      method: "GET"
-    }
-  );
-
+export async function apiGet(endpoint) {
+  return request(endpoint, {
+    method: "GET",
+  });
 }
-
 
 // ============================================================
 // POST
 // ============================================================
 
-export function apiPost(
-  endpoint,
-  body
-) {
-
-  return request(
-    endpoint,
-    {
-      method: "POST",
-
-      body:
-        JSON.stringify(body)
-    }
-  );
-
+export async function apiPost(endpoint, body = {}) {
+  return request(endpoint, {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
 }
-
-
-// ============================================================
-// PATCH
-// ============================================================
-
-export function apiPatch(
-  endpoint,
-  body
-) {
-
-  return request(
-    endpoint,
-    {
-      method: "PATCH",
-
-      body:
-        JSON.stringify(body)
-    }
-  );
-
-}
-
 
 // ============================================================
 // PUT
 // ============================================================
 
-export function apiPut(
-  endpoint,
-  body
-) {
-
-  return request(
-    endpoint,
-    {
-      method: "PUT",
-
-      body:
-        JSON.stringify(body)
-    }
-  );
-
+export async function apiPut(endpoint, body = {}) {
+  return request(endpoint, {
+    method: "PUT",
+    body: JSON.stringify(body),
+  });
 }
 
+// ============================================================
+// PATCH
+// ============================================================
+
+export async function apiPatch(endpoint, body = {}) {
+  return request(endpoint, {
+    method: "PATCH",
+    body: JSON.stringify(body),
+  });
+}
 
 // ============================================================
 // DELETE
 // ============================================================
 
-export function apiDelete(
-  endpoint
-) {
-
-  return request(
-    endpoint,
-    {
-      method: "DELETE"
-    }
-  );
-
+export async function apiDelete(endpoint) {
+  return request(endpoint, {
+    method: "DELETE",
+  });
 }
 
-
 // ============================================================
-// ROUTE SEARCH
+// GENERIC FETCH
 // ============================================================
 
-export function findRoutes(
-  currentLocation,
-  destination
-) {
-
-  return apiPost(
-    "/api/routes",
-    {
-      currentLocation,
-      destination
-    }
-  );
-
+export async function apiFetch(endpoint, options = {}) {
+  return request(endpoint, options);
 }

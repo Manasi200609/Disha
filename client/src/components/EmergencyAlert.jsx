@@ -10,15 +10,20 @@ export default function EmergencyAlert({
   }
 
   return (
-    <div className="emergency-overlay">
+    <div
+      className="emergency-overlay"
+      onClick={onClose}
+    >
 
       <div
         className="emergency-modal"
         role="dialog"
         aria-modal="true"
+        aria-labelledby="emergency-title"
+        onClick={(event) => event.stopPropagation()}
       >
 
-        <div className="emergency-icon">
+        <div className="emergency-modal-icon">
           !
         </div>
 
@@ -26,7 +31,7 @@ export default function EmergencyAlert({
           EMERGENCY SUPPORT
         </span>
 
-        <h2>
+        <h2 id="emergency-title">
           Are you sure?
         </h2>
 
@@ -60,3 +65,4 @@ export default function EmergencyAlert({
     </div>
   );
 }
+

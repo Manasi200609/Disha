@@ -4,6 +4,10 @@ import "dotenv/config";
 
 import routeRoutes from "./routes/routeRoutes.js";
 import trustedContactRoutes from "./routes/trustedContactRoutes.js";
+import journeyRoutes from "./routes/journeyRoutes.js";
+import emergencyRoutes from "./routes/emergencyRoutes.js";
+
+import connectDB from "./config/db.js";
 
 const app = express();
 
@@ -13,7 +17,12 @@ const PORT = process.env.PORT || 5000;
 // MIDDLEWARE
 // ============================================================
 
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
@@ -42,15 +51,24 @@ app.use(
   trustedContactRoutes
 );
 
+app.use(
+  "/journeys",
+  journeyRoutes
+);
+
+app.use(
+  "/emergency",
+  emergencyRoutes
+);
+
 // ============================================================
-// 404
+// 404 HANDLER
 // ============================================================
 
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    message:
-      `Route not found: ${req.method} ${req.originalUrl}`,
+    message: `Route not found: ${req.method} ${req.originalUrl}`,
   });
 });
 
@@ -59,10 +77,7 @@ app.use((req, res) => {
 // ============================================================
 
 app.use((error, req, res, next) => {
-  console.error(
-    "❌ Server error:",
-    error
-  );
+  console.error("❌ Server error:", error);
 
   res.status(500).json({
     success: false,
@@ -74,24 +89,50 @@ app.use((error, req, res, next) => {
 // START SERVER
 // ============================================================
 
-app.listen(
-  PORT,
-  "0.0.0.0",
-  () => {
-    console.log(
-      `🔥 DISHA SERVER RUNNING ON http://0.0.0.0:${PORT}`
+const startServer = async () => {
+  try {
+    // Connect MongoDB first
+    await connectDB();
+
+    app.listen(
+      PORT,
+      "0.0.0.0",
+      () => {
+        console.log("");
+        console.log("==========================================");
+        console.log("🔥 DISHA SERVER RUNNING");
+        console.log("==========================================");
+        console.log(
+          `🌐 Local: http://localhost:${PORT}`
+        );
+        console.log(
+          `📱 Phone API: http://10.137.204.201:${PORT}`
+        );
+        console.log("");
+        console.log(
+          "🗺️ Route API: POST /api/routes"
+        );
+        console.log(
+          "👥 Trusted Contacts API: /api/trusted-contacts"
+        );
+        console.log(
+          "🧭 Journey API: /journeys"
+        );
+        console.log(
+          "🚨 Emergency API: /emergency"
+        );
+        console.log("==========================================");
+        console.log("");
+      }
+    );
+  } catch (error) {
+    console.error(
+      "❌ Failed to start Disha server:",
+      error
     );
 
-    console.log(
-      `📱 Phone API: http://10.137.204.201:${PORT}`
-    );
-
-    console.log(
-      "🗺️ Route API: POST /api/routes"
-    );
-
-    console.log(
-      "👥 Trusted Contacts API: /api/trusted-contacts"
-    );
+    process.exit(1);
   }
-);
+};
+
+startServer();

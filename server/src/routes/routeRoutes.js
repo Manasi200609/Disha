@@ -1,17 +1,11 @@
 import express from "express";
 
 import {
-  findRoutes
+  findRoutes,
 } from "../controllers/routeController.js";
-
 
 const router = express.Router();
 
-
-router.post(
-  "/",
-  findRoutes
-);
-
+router.post("/", findRoutes);
 
 export default router;

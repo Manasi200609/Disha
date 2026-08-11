@@ -6,7 +6,7 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon --exec \"node --env-file=.env\" src/server.js",
-    "start": "src/server.js"
+    "start": "node src/server.js"
   },
   "dependencies": {
     "cors": "^2.8.6",

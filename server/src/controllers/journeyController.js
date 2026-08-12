@@ -337,3 +337,91 @@ export const checkInJourney = async (req, res) => {
     });
   }
 };
+
+// ============================================================
+// EMERGENCY ESCALATION
+// POST /journeys/:journeyId/emergency
+// ============================================================
+
+export const escalateEmergency = async (req, res) => {
+  try {
+    const { journeyId } = req.params;
+
+    const {
+      latitude,
+      longitude,
+      lat,
+      lng,
+    } = req.body || {};
+
+    const finalLatitude = latitude ?? lat;
+    const finalLongitude = longitude ?? lng;
+
+    const emergencyLocation =
+      finalLatitude !== undefined &&
+      finalLongitude !== undefined
+        ? {
+            latitude: Number(finalLatitude),
+            longitude: Number(finalLongitude),
+            updatedAt: new Date(),
+          }
+        : null;
+
+    const updateData = {
+      emergencyActive: true,
+      emergencyTriggeredAt: new Date(),
+      emergencyStatus: "alerting_contacts",
+    };
+
+    if (emergencyLocation) {
+      updateData.emergencyLocation = emergencyLocation;
+      updateData.lastLocation = emergencyLocation;
+    }
+
+    const journey = await Journey.findOneAndUpdate(
+      {
+        journeyId,
+      },
+      {
+        $set: updateData,
+      },
+      {
+        new: true,
+      }
+    );
+
+    if (!journey) {
+      return res.status(404).json({
+        success: false,
+        message: "Journey not found.",
+      });
+    }
+
+    console.log(
+      `🚨 EMERGENCY ESCALATION: ${journeyId}`
+    );
+
+    console.log(
+      "📢 Alerting trusted contacts..."
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Alerting your contacts.",
+      emergency: true,
+      journey,
+    });
+  } catch (error) {
+    console.error(
+      "❌ Emergency escalation error:",
+      error
+    );
+
+    return res.status(500).json({
+      success: false,
+      message:
+        "Failed to trigger emergency escalation.",
+      error: error.message,
+    });
+  }
+};

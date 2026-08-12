@@ -1,106 +1,79 @@
 /* =========================================================
-   DISHA ROUTE CARD
+   DISHA — ROUTE CARD
    ========================================================= */
 
 .route-card {
-  --route-bg: #fffaf4;
-  --route-text: #3a2927;
-  --route-muted: #806e68;
-
-  --route-terracotta: #b86650;
-  --route-terracotta-dark: #934937;
-  --route-terracotta-soft: #ead0c4;
-
-  --route-border: rgba(58, 41, 39, 0.11);
-
-  --route-safe: #47745b;
-  --route-safe-soft: #dce9df;
-
-  --route-moderate: #a66a35;
-  --route-moderate-soft: #f0dfc9;
-
-  --route-low: #c23b35;
-  --route-low-soft: #f3d4d1;
-
   position: relative;
 
   width: 100%;
+  min-width: 0;
 
-  padding: 16px;
+  display: block;
 
-  background: var(--route-bg);
+  padding: 22px 22px 18px;
 
-  border: 1px solid var(--route-border);
-  border-radius: 18px;
+  border: 1px solid var(--border-soft, #e7dbd1);
+  border-radius: 20px;
 
-  color: var(--route-text);
+  background: var(--surface, #fffaf5);
+  color: var(--text, #2b2220);
+
+  text-align: left;
 
   cursor: pointer;
 
-  overflow: hidden;
+  appearance: none;
+  -webkit-appearance: none;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 4px 16px rgba(69, 45, 38, 0.055);
 
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
 
 .route-card:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+
+  border-color: var(--primary, #a85d47);
 
   box-shadow:
-    0 7px 20px rgba(58, 41, 39, 0.07);
-}
-
-.route-card:active {
-  transform: scale(0.99);
+    0 9px 24px rgba(69, 45, 38, 0.09);
 }
 
 
 /* =========================================================
-   SELECTED
+   SELECTED CARD
    ========================================================= */
 
-.route-card.selected {
-  border: 1.5px solid var(--route-terracotta);
+.route-card-selected {
+  border: 1.5px solid var(--primary, #a85d47);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(168, 93, 71, 0.045),
+      var(--surface, #fffaf5)
+    );
 
   box-shadow:
-    0 0 0 3px rgba(184, 102, 80, 0.08);
+    0 10px 28px rgba(168, 93, 71, 0.12);
 }
 
+.route-card-selected:hover {
+  transform: translateY(-2px);
 
-/* =========================================================
-   RECOMMENDED
-   ========================================================= */
-
-.route-card.recommended {
-  border-color: rgba(184, 102, 80, 0.3);
-}
-
-.route-recommended-badge {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 5px;
-
-  margin-bottom: 12px;
-
-  padding: 5px 8px;
-
-  border-radius: 7px;
-
-  background: var(--route-terracotta-soft);
-
-  color: var(--route-terracotta-dark);
-
-  font-size: 6px;
-  font-weight: 900;
-
-  letter-spacing: 0.9px;
-}
-
-.route-recommended-badge span {
-  font-size: 9px;
+  border-color: var(--primary, #a85d47);
 }
 
 
@@ -109,381 +82,250 @@
    ========================================================= */
 
 .route-card-header {
+  width: 100%;
+
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 
-  gap: 12px;
+  gap: 16px;
 }
 
-.route-card-title {
-  flex: 1;
 
+.route-card-header > div {
   min-width: 0;
-
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-}
-
-.route-card-title h3 {
-  margin: 0;
-
-  font-size: 14px;
-  font-weight: 800;
-
-  line-height: 1.25;
-}
-
-.route-card-title p {
-  margin: 4px 0 0;
-
-  color: var(--route-muted);
-
-  font-size: 9px;
 }
 
 
 /* =========================================================
-   RADIO
+   EYEBROW
+   ========================================================= */
+
+.route-card-eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--primary, #a85d47);
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.25px;
+  line-height: 1.2;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   ROUTE NAME
+   ========================================================= */
+
+.route-card-header h3 {
+  margin: 0;
+
+  color: var(--text, #2b2220);
+
+  font-family:
+    var(--font-heading, Georgia, serif);
+
+  font-size: 20px;
+  font-weight: 600;
+
+  line-height: 1.25;
+
+  letter-spacing: -0.2px;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   RADIO / SELECT INDICATOR
    ========================================================= */
 
 .route-radio {
-  width: 19px;
-  height: 19px;
+  width: 24px;
+  height: 24px;
 
-  flex-shrink: 0;
-
-  border: 1.5px solid rgba(128, 110, 104, 0.45);
-
-  border-radius: 50%;
+  flex: 0 0 24px;
 
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-.route-card.selected .route-radio {
-  border-color: var(--route-terracotta);
-}
+  margin-top: 1px;
 
-.route-radio span {
-  width: 9px;
-  height: 9px;
-
+  border: 1.5px solid #cdbfb5;
   border-radius: 50%;
 
   background: transparent;
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  box-sizing: border-box;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.route-card.selected .route-radio span {
-  background: var(--route-terracotta);
+
+.route-radio.active {
+  border-color: var(--primary, #a85d47);
+
+  background: var(--primary, #a85d47);
+
+  transform: scale(1.03);
 }
 
 
 /* =========================================================
-   SAFETY SCORE
+   DETAILS ROW
    ========================================================= */
 
-.route-safety-score {
-  min-width: 58px;
+.route-card-details {
+  width: 100%;
 
   display: grid;
 
-  grid-template-columns: auto auto;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
 
-  align-items: baseline;
+  margin-top: 21px;
 
-  justify-content: end;
-
-  column-gap: 2px;
-
-  text-align: right;
-}
-
-.route-safety-score strong {
-  font-size: 21px;
-  font-weight: 900;
-
-  line-height: 1;
-}
-
-.route-safety-score > span {
-  font-size: 7px;
-
-  color: var(--route-muted);
-}
-
-.route-safety-score small {
-  grid-column: 1 / -1;
-
-  margin-top: 3px;
-
-  color: var(--route-muted);
-
-  font-size: 5px;
-  font-weight: 900;
-
-  letter-spacing: 0.8px;
-}
-
-.route-safety-score.safe strong {
-  color: var(--route-safe);
-}
-
-.route-safety-score.moderate strong {
-  color: var(--route-moderate);
-}
-
-.route-safety-score.low strong {
-  color: var(--route-low);
+  border-top: 1px solid var(--border-soft, #e7dbd1);
+  border-bottom: 1px solid var(--border-soft, #e7dbd1);
 }
 
 
 /* =========================================================
-   SAFETY LEVEL
+   INDIVIDUAL DETAIL
    ========================================================= */
 
-.route-safety-level {
-  margin-top: 13px;
+.route-detail {
+  min-width: 0;
 
   display: flex;
   align-items: center;
-
-  gap: 6px;
-}
-
-.route-safety-level strong {
-  font-size: 9px;
-  font-weight: 850;
-}
-
-.route-safety-label {
-  color: var(--route-muted);
-
-  font-size: 8px;
-}
-
-.route-safety-dot {
-  width: 7px;
-  height: 7px;
-
-  border-radius: 50%;
-}
-
-.route-safety-dot.safe {
-  background: var(--route-safe);
-
-  box-shadow:
-    0 0 0 3px var(--route-safe-soft);
-}
-
-.route-safety-dot.moderate {
-  background: var(--route-moderate);
-
-  box-shadow:
-    0 0 0 3px var(--route-moderate-soft);
-}
-
-.route-safety-dot.low {
-  background: var(--route-low);
-
-  box-shadow:
-    0 0 0 3px var(--route-low-soft);
-}
-
-
-/* =========================================================
-   AI REASON
-   ========================================================= */
-
-.route-ai-reason {
-  margin-top: 13px;
-
-  padding: 10px;
-
-  display: flex;
-  align-items: flex-start;
 
   gap: 8px;
 
-  border-radius: 11px;
-
-  background: var(--route-terracotta-soft);
+  padding: 14px 8px;
 }
 
-.route-ai-icon {
-  width: 22px;
-  height: 22px;
 
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 7px;
-
-  background: var(--route-terracotta);
-
-  color: white;
-
-  font-size: 10px;
+.route-detail:first-child {
+  padding-left: 0;
 }
 
-.route-ai-reason > div:last-child {
-  flex: 1;
+
+.route-detail:last-child {
+  padding-right: 0;
 }
 
-.route-ai-reason span {
-  display: block;
 
-  color: var(--route-terracotta-dark);
-
-  font-size: 5px;
-  font-weight: 900;
-
-  letter-spacing: 0.8px;
-}
-
-.route-ai-reason p {
-  margin: 4px 0 0;
-
-  color: var(--route-text);
-
-  font-size: 9px;
-  line-height: 1.4;
+.route-detail + .route-detail {
+  border-left: 1px solid var(--border-soft, #e7dbd1);
 }
 
 
 /* =========================================================
-   SAFETY FACTORS
+   DETAIL ICON
    ========================================================= */
 
-.route-factors {
-  margin-top: 13px;
+.route-detail-icon {
+  width: 28px;
+  height: 28px;
 
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 6px;
-}
-
-.route-factor {
-  min-width: 0;
-
-  padding: 8px;
+  flex: 0 0 28px;
 
   display: flex;
   align-items: center;
-
-  gap: 6px;
-
-  border: 1px solid var(--route-border);
+  justify-content: center;
 
   border-radius: 9px;
 
-  background: rgba(128, 110, 104, 0.035);
-}
+  background: var(--primary-soft, #f4e7df);
 
-.factor-icon {
-  width: 20px;
-  height: 20px;
+  color: var(--primary, #a85d47);
 
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 6px;
-
-  background: var(--route-terracotta-soft);
-
-  color: var(--route-terracotta-dark);
-
-  font-size: 9px;
-}
-
-.route-factor div {
-  min-width: 0;
-}
-
-.route-factor small {
-  display: block;
-
-  color: var(--route-muted);
-
-  font-size: 6px;
-}
-
-.route-factor strong {
-  display: block;
-
-  margin-top: 2px;
-
-  overflow: hidden;
-
-  color: var(--route-text);
-
-  font-size: 7px;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 14px;
 }
 
 
 /* =========================================================
-   SELECT BUTTON
+   DETAIL TEXT
    ========================================================= */
 
-.route-select-button {
-  width: 100%;
+.route-detail > div {
+  min-width: 0;
+}
 
-  height: 40px;
+
+.route-detail small {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--text-muted, #9b8b82);
+
+  font-size: 7.5px;
+  font-weight: 800;
+
+  letter-spacing: 0.9px;
+
+  line-height: 1.2;
+
+  text-transform: uppercase;
+}
+
+
+.route-detail strong {
+  display: block;
+
+  min-width: 0;
+
+  color: var(--text, #2b2220);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  line-height: 1.25;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   SAFETY LABEL
+   ========================================================= */
+
+.route-safety-label {
+  display: inline-flex;
+  align-items: center;
 
   margin-top: 13px;
 
-  padding: 0 12px;
+  padding: 5px 9px;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  border-radius: 7px;
 
-  border: 1px solid var(--route-terracotta);
+  background: rgba(77, 125, 82, 0.09);
 
-  border-radius: 10px;
+  color: #527355;
 
-  background: transparent;
+  font-size: 10px;
+  font-weight: 700;
 
-  color: var(--route-terracotta-dark);
-
-  font-size: 9px;
-  font-weight: 850;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.route-select-button span {
-  font-size: 14px;
-}
-
-.route-select-button:hover {
-  background: var(--route-terracotta);
-
-  color: white;
-}
-
-.route-card.selected .route-select-button {
-  background: var(--route-terracotta);
-
-  color: white;
+  line-height: 1.2;
 }
 
 
@@ -492,60 +334,193 @@
    ========================================================= */
 
 [data-theme="dark"] .route-card {
-  --route-bg: #211b1d;
-  --route-text: #f4e9df;
-  --route-muted: #b8a69e;
+  border-color: var(--border-soft, #463a36);
 
-  --route-terracotta: #c8755d;
-  --route-terracotta-dark: #a65440;
-  --route-terracotta-soft: #382522;
+  background: var(--surface, #211c1a);
 
-  --route-border: rgba(244, 233, 223, 0.1);
-
-  --route-safe: #72a47f;
-  --route-safe-soft: #233229;
-
-  --route-moderate: #d29359;
-  --route-moderate-soft: #3b2c20;
-
-  --route-low: #e06a63;
-  --route-low-soft: #3c2524;
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.16);
 }
 
+
 [data-theme="dark"] .route-card:hover {
-  box-shadow:
-    0 8px 22px rgba(0, 0, 0, 0.18);
+  border-color: var(--primary, #c8795e);
+}
+
+
+[data-theme="dark"] .route-card-selected {
+  border-color: var(--primary, #c8795e);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(200, 121, 94, 0.08),
+      var(--surface, #211c1a)
+    );
+}
+
+
+[data-theme="dark"] .route-card-header h3,
+[data-theme="dark"] .route-detail strong {
+  color: var(--text, #f5ece7);
+}
+
+
+[data-theme="dark"] .route-detail-icon {
+  background: rgba(200, 121, 94, 0.12);
+
+  color: var(--primary, #c8795e);
+}
+
+
+[data-theme="dark"] .route-safety-label {
+  background: rgba(100, 150, 105, 0.13);
+
+  color: #9bc19d;
 }
 
 
 /* =========================================================
-   SMALL MOBILE
+   TABLET
    ========================================================= */
 
-@media (max-width: 360px) {
+@media (max-width: 650px) {
+
   .route-card {
-    padding: 13px;
+    padding: 20px;
   }
 
-  .route-card-title h3 {
-    font-size: 13px;
-  }
-
-  .route-safety-score strong {
+  .route-card-header h3 {
     font-size: 19px;
   }
 
-  .route-factor {
-    padding: 7px 5px;
+  .route-detail {
+    gap: 7px;
 
-    gap: 4px;
+    padding: 13px 7px;
   }
 
-  .factor-icon {
-    display: none;
+  .route-detail-icon {
+    width: 26px;
+    height: 26px;
+
+    flex-basis: 26px;
+
+    font-size: 13px;
   }
 
-  .route-factor strong {
-    font-size: 6.5px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .route-card {
+    padding: 18px;
+
+    border-radius: 18px;
   }
+
+  .route-card-header {
+    gap: 10px;
+  }
+
+  .route-card-eyebrow {
+    font-size: 8px;
+
+    letter-spacing: 1.05px;
+  }
+
+  .route-card-header h3 {
+    font-size: 18px;
+  }
+
+  .route-radio {
+    width: 22px;
+    height: 22px;
+
+    flex-basis: 22px;
+  }
+
+
+  /* Stack the route information */
+
+  .route-card-details {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 18px;
+  }
+
+  .route-detail {
+    width: 100%;
+
+    padding: 11px 0;
+
+    box-sizing: border-box;
+  }
+
+  .route-detail:first-child {
+    padding-left: 0;
+  }
+
+  .route-detail:last-child {
+    padding-right: 0;
+  }
+
+  .route-detail + .route-detail {
+    border-left: none;
+
+    border-top: 1px solid
+      var(--border-soft, #e7dbd1);
+  }
+
+
+  .route-detail-icon {
+    width: 28px;
+    height: 28px;
+
+    flex-basis: 28px;
+  }
+
+
+  .route-detail small {
+    font-size: 7px;
+  }
+
+  .route-detail strong {
+    font-size: 11px;
+  }
+
+
+  .route-safety-label {
+    margin-top: 11px;
+
+    font-size: 9px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .route-card {
+    padding: 16px;
+  }
+
+  .route-card-header h3 {
+    font-size: 17px;
+  }
+
+  .route-card-eyebrow {
+    font-size: 7px;
+  }
+
 }

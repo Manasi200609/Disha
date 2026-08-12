@@ -1,77 +1,173 @@
-
-/* =========================================================
-   DISHA — EMERGENCY BUTTON
-   Clean, responsive, non-overlapping SOS button
-   ========================================================= */
+/* ============================================================
+   DISHA EMERGENCY BUTTON
+============================================================ */
 
 .emergency-button {
-  --emergency-red: #c62828;
-  --emergency-red-dark: #a51f1f;
-
   width: 100%;
   min-height: 58px;
-  box-sizing: border-box;
 
   display: flex;
   align-items: center;
-
   gap: 12px;
-  padding: 10px 14px;
 
-  border: 0;
-  border-radius: 15px;
+  padding: 10px 16px;
 
-  background: var(--emergency-red);
+  border: none;
+  border-radius: 16px;
+
+  background: #d71920;
   color: #ffffff;
 
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-
-  text-align: left;
   cursor: pointer;
 
+  text-align: left;
+
   box-shadow:
-    0 6px 18px rgba(198, 40, 40, 0.22);
+    0 8px 24px rgba(215, 25, 32, 0.22);
 
   transition:
-    transform 0.15s ease,
+    transform 0.2s ease,
     background 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-/* =========================================================
-   HOVER / ACTIVE
-   ========================================================= */
-
 .emergency-button:hover {
-  background: var(--emergency-red-dark);
+  background: #bd151b;
+
+  transform: translateY(-2px);
 
   box-shadow:
-    0 8px 21px rgba(198, 40, 40, 0.28);
-
-  transform: translateY(-1px);
+    0 12px 30px rgba(215, 25, 32, 0.28);
 }
 
 .emergency-button:active {
   transform: scale(0.98);
-
-  box-shadow:
-    0 3px 10px rgba(198, 40, 40, 0.18);
 }
 
-/* =========================================================
-   ICON
-   ========================================================= */
 
-.emergency-button-icon {
+/* ============================================================
+   ICON
+============================================================ */
+
+.home-sos-icon {
   width: 38px;
   height: 38px;
 
-  flex: 0 0 38px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid rgba(255,255,255,0.9);
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.08);
+
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   TEXT
+============================================================ */
+
+.emergency-content {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.emergency-content strong {
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.emergency-content small {
+  color: rgba(255,255,255,0.75);
+
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   ARROW
+============================================================ */
+
+.emergency-arrow {
+  color: #ffffff;
+
+  font-size: 21px;
+}
+
+
+/* ============================================================
+   OVERLAY
+============================================================ */
+
+.emergency-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(24, 19, 20, 0.68);
+
+  backdrop-filter: blur(8px);
+
+  animation: emergencyFadeIn 0.2s ease;
+}
+
+
+/* ============================================================
+   MODAL
+============================================================ */
+
+.emergency-modal {
+  width: min(430px, 100%);
+
+  padding: 34px 28px 28px;
+
+  border-radius: 24px;
+
+  background: #fffaf3;
+
+  border: 1px solid rgba(198, 95, 69, 0.18);
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,0.30);
+
+  text-align: center;
+
+  animation: emergencyModalIn 0.28s ease;
+}
+
+
+/* ============================================================
+   PULSE ICON
+============================================================ */
+
+.emergency-pulse,
+.emergency-success {
+  width: 64px;
+  height: 64px;
+
+  margin: 0 auto 20px;
 
   display: flex;
   align-items: center;
@@ -79,187 +175,214 @@
 
   border-radius: 50%;
 
-  background: rgba(255, 255, 255, 0.14);
-  border: 2px solid rgba(255, 255, 255, 0.9);
-
-  color: #ffffff;
-
-  font-size: 17px;
+  font-size: 26px;
   font-weight: 800;
-
-  line-height: 1;
 }
 
-/* =========================================================
-   TEXT
-   ========================================================= */
+.emergency-pulse {
+  background: #d71920;
+  color: white;
 
-.emergency-button-content {
-  min-width: 0;
-  flex: 1;
+  box-shadow:
+    0 0 0 0 rgba(215,25,32,0.5);
 
-  display: flex;
-  flex-direction: column;
-
-  align-items: flex-start;
-
-  gap: 3px;
+  animation: emergencyPulse 1.4s infinite;
 }
 
-.emergency-button-content strong {
+.emergency-success {
+  background: #6fa982;
+  color: white;
+}
+
+
+/* ============================================================
+   MODAL CONTENT
+============================================================ */
+
+.emergency-modal-eyebrow {
   display: block;
 
+  margin-bottom: 8px;
+
+  color: #c65f45;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.emergency-modal h2 {
   margin: 0;
+
+  color: #241d1e;
+
+  font-family: var(--font-heading);
+
+  font-size: 27px;
+
+  line-height: 1.15;
+}
+
+.emergency-modal p {
+  margin: 13px auto 0;
+
+  max-width: 340px;
+
+  color: #786c67;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   PROGRESS
+============================================================ */
+
+.emergency-progress {
+  width: 100%;
+  height: 5px;
+
+  margin-top: 25px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #eaded5;
+}
+
+.emergency-progress span {
+  display: block;
+
+  width: 40%;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: #d71920;
+
+  animation: emergencyProgress 1.8s ease forwards;
+}
+
+.emergency-status {
+  display: block;
+
+  margin-top: 11px;
+
+  color: #9a8c85;
+
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   DONE BUTTON
+============================================================ */
+
+.emergency-close-button {
+  width: 100%;
+
+  min-height: 50px;
+
+  margin-top: 24px;
+
+  border: none;
+  border-radius: 13px;
+
+  background: #c65f45;
 
   color: #ffffff;
 
   font-size: 13px;
-  font-weight: 750;
+  font-weight: 700;
 
-  line-height: 1.2;
+  cursor: pointer;
 
-  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
-.emergency-button-content small {
-  display: block;
+.emergency-close-button:hover {
+  background: #aa503a;
 
-  margin: 0;
-
-  color: rgba(255, 255, 255, 0.82);
-
-  font-size: 10px;
-  font-weight: 500;
-
-  line-height: 1.25;
-
-  white-space: nowrap;
+  transform: translateY(-1px);
 }
 
-/* =========================================================
-   ARROW / RIGHT SIDE
-   ========================================================= */
 
-.emergency-button > span:last-child {
-  flex: 0 0 auto;
+/* ============================================================
+   ANIMATIONS
+============================================================ */
 
-  margin-left: auto;
+@keyframes emergencyFadeIn {
+  from {
+    opacity: 0;
+  }
 
-  color: #ffffff;
-
-  font-size: 20px;
-  line-height: 1;
+  to {
+    opacity: 1;
+  }
 }
 
-/* =========================================================
-   DISABLED
-   ========================================================= */
+@keyframes emergencyModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.96);
+  }
 
-.emergency-button.disabled,
-.emergency-button:disabled {
-  opacity: 0.45;
-
-  cursor: not-allowed;
-
-  box-shadow: none;
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.emergency-button.disabled:hover,
-.emergency-button:disabled:hover {
-  background: var(--emergency-red);
+@keyframes emergencyPulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(215,25,32,0.45);
+  }
 
-  transform: none;
+  70% {
+    box-shadow:
+      0 0 0 18px rgba(215,25,32,0);
+  }
 
-  box-shadow: none;
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(215,25,32,0);
+  }
 }
 
-/* =========================================================
-   DARK MODE
-   ========================================================= */
+@keyframes emergencyProgress {
+  from {
+    width: 0%;
+  }
 
-[data-theme="dark"] .emergency-button {
-  --emergency-red: #df3b38;
-  --emergency-red-dark: #c82e2b;
-
-  box-shadow:
-    0 6px 20px rgba(223, 59, 56, 0.25);
+  to {
+    width: 100%;
+  }
 }
 
-[data-theme="dark"] .emergency-button:hover {
-  box-shadow:
-    0 8px 23px rgba(223, 59, 56, 0.32);
-}
 
-/* =========================================================
+/* ============================================================
    MOBILE
-   ========================================================= */
+============================================================ */
 
-@media (max-width: 600px) {
-  .emergency-button {
-    min-height: 56px;
+@media (max-width: 480px) {
 
-    gap: 10px;
-    padding: 9px 12px;
-
-    border-radius: 14px;
+  .emergency-modal {
+    padding: 28px 20px 22px;
   }
 
-  .emergency-button-icon {
-    width: 36px;
-    height: 36px;
-
-    flex-basis: 36px;
-
-    font-size: 16px;
+  .emergency-modal h2 {
+    font-size: 23px;
   }
 
-  .emergency-button-content {
-    gap: 2px;
-  }
-
-  .emergency-button-content strong {
+  .emergency-modal p {
     font-size: 12px;
   }
 
-  .emergency-button-content small {
-    font-size: 9px;
-  }
-
-  .emergency-button > span:last-child {
-    font-size: 18px;
-  }
-}
-
-/* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 360px) {
-  .emergency-button {
-    min-height: 52px;
-
-    gap: 8px;
-    padding: 8px 10px;
-  }
-
-  .emergency-button-icon {
-    width: 32px;
-    height: 32px;
-
-    flex-basis: 32px;
-
-    font-size: 14px;
-  }
-
-  .emergency-button-content strong {
-    font-size: 11px;
-  }
-
-  .emergency-button-content small {
-    font-size: 8px;
-  }
-
-  .emergency-button > span:last-child {
-    font-size: 17px;
-  }
 }

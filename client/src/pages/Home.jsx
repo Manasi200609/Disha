@@ -1,5 +1,6 @@
 import { useState } from "react";
 import EmergencyAlert from "../components/EmergencyAlert";
+import EmergencyButton from "../components/EmergencyButton";
 import "./Home.css";
 
 function Home({ darkMode, toggleDarkMode }) {
@@ -276,39 +277,22 @@ function Home({ darkMode, toggleDarkMode }) {
         {/* =================================
             EMERGENCY
         ================================= */}
+              <section className="home-emergency-section">
+      <div className="home-emergency-copy">
+        <span className="home-emergency-eyebrow">
+          NEED HELP?
+        </span>
 
-        <section className="emergency-section">
+        <h3>I feel unsafe.</h3>
 
-          <button
-            type="button"
-            className="emergency-button"
-            onClick={handleEmergency}
-            aria-label="I feel unsafe - get immediate help"
-          >
+        <p>
+          Alert your trusted contacts and share your
+          current situation.
+        </p>
+      </div>
 
-            <span className="home-emergency-icon">
-              !
-            </span>
-
-            <span className="emergency-content">
-
-              <strong>
-                I feel unsafe
-              </strong>
-
-              <small>
-                Get immediate help
-              </small>
-
-            </span>
-
-            <span className="emergency-arrow">
-              →
-            </span>
-
-          </button>
-
-        </section>
+      <EmergencyButton compact />
+    </section>
 
       </section>
 
